@@ -14,12 +14,18 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Load grunt tasks automatically
-  require('load-grunt-tasks')(grunt);
+  require('jit-grunt')(grunt, {
+    useminPrepare: 'grunt-usemin',
+    browserSync: 'grunt-browser-sync',
+    validation: 'grunt-html-validation'
+  });
 
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    src: 'src',
+    pkg: grunt.file.readJSON('package.json')
   };
 
   // Define the configuration for all the tasks
@@ -74,6 +80,19 @@ module.exports = function (grunt) {
           '.tmp/scripts/{,*/}*.js',<% } %>
           '<%%= config.app %>/images/{,*/}*'
         ]
+      },
+      templateRoot: {
+        files: ['<%= config.src %>/templates/pages/*.hbs'],
+        tasks: ['newer:assemble:index']
+      },
+      // newer task can not be used over structural reasons.
+      template: {
+        files: [
+          '<%= config.src %>/data/*.yml',
+          '<%= config.src %>/templates/{partials,layouts}/*.hbs',
+          '<%= config.src %>/templates/pages/*/*.hbs'
+        ],
+        tasks: ['assemble:pages']
       }
     },
 
@@ -156,16 +175,7 @@ module.exports = function (grunt) {
           urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
         }
       }
-    },<% } else if (testFramework === 'jasmine') { %>
-
-    // Jasmine testing framework configuration options
-    jasmine: {
-      all: {
-        options: {
-          specs: 'test/spec/{,*/}*.js'
-        }
-      }
-    },<% } %><% if (coffee) { %>
+    },<% if (coffee) { %>
 
     // Compiles CoffeeScript to JavaScript
     coffee: {
@@ -191,12 +201,10 @@ module.exports = function (grunt) {
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
-      options: {<% if (includeLibSass) { %>
+      options:
         sourceMap: true,
         includePaths: ['bower_components']
-        <% } else { %>
-        loadPath: 'bower_components'
-      <% } %>},
+      },
       dist: {
         files: [{
           expand: true,
@@ -414,6 +422,24 @@ module.exports = function (grunt) {
       }
     },<% } %>
 
+    assemble: {
+      options: {
+        flatten: false,
+        layoutext: '.hbs',
+        assets: '<%= config.app %>/',
+        layoutdir: '<%= config.src %>/templates/layouts',
+        partials: ['<%= config.src %>/templates/partials/*.hbs'],
+        data: ['<%= config.src %>/data/*.yml']
+      },
+      pages: {
+        options: {
+          plugins: []
+        },
+        src: '<%= config.src %>/pages/{,*/}*.hbs',
+        dest: '<%= config.app %>/'
+      }
+    },
+
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [<% if (includeSass) { %>
@@ -431,6 +457,11 @@ module.exports = function (grunt) {
         'copy:styles',
         'imagemin',
         'svgmin'
+      ],
+      tasks: [
+        'jshint',
+        'mocha',
+        'pngcheck'
       ]
     }
   });
@@ -449,6 +480,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+      'browserSync',
       'connect:livereload',
       'watch'
     ]);
@@ -469,14 +501,14 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'connect:test',<% if (testFramework === 'mocha') { %>
-      'mocha'<% } else if (testFramework === 'jasmine') { %>
-      'jasmine'<% } %>
+      'connect:test',
+      'mocha'
     ]);
   });
 
   grunt.registerTask('build', [
     'clean:dist',
+    'assemble',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
