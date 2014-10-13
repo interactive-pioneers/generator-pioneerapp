@@ -1,4 +1,4 @@
-# Web app generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-webapp.svg?branch=master)](http://travis-ci.org/yeoman/generator-webapp)
+# Web app generator [![Build Status](https://secure.travis-ci.org/interactive-pioneers/generator-pioneerapp.svg?branch=master)](http://travis-ci.org/interactive-pioneers/generator-pioneerapp)
 
 [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app.
 
@@ -16,13 +16,13 @@
 * Bootstrap for Sass (Optional)
 * Leaner Modernizr builds (Optional)
 
-For more information on what `generator-webapp` can do for you, take a look at the [Grunt tasks](https://github.com/yeoman/generator-webapp/blob/master/app/templates/_package.json) used in our `package.json`.
+For more information on what `generator-pioneerapp` can do for you, take a look at the [Grunt tasks](https://github.com/interactive-pioneers/generator-pioneerapp/blob/master/app/templates/_package.json) used in our `package.json`.
 
 
 ## Getting Started
 
-- Install: `npm install -g generator-webapp`
-- Run: `yo webapp`
+- Install: `npm install -g generator-pioneerapp`
+- Run: `yo pioneerapp`
 - Run `grunt` for building and `grunt serve` for preview[\*](#grunt-serve-note). `--allow-remote` option for remote access.
 
 
@@ -77,7 +77,7 @@ See the [contributing docs](https://github.com/yeoman/yeoman/blob/master/contrib
 
 Note: We are regularly asked whether we can add or take away features. If a change is good enough to have a positive impact on all users, we are happy to consider it.
 
-If not, `generator-webapp` is fork-friendly and you can always maintain a custom version which you `npm install && npm link` to continue using via `yo webapp` or a name of your choosing.
+If not, `generator-pioneerapp` is fork-friendly and you can always maintain a custom version which you `npm install && npm link` to continue using via `yo pioneerapp` or a name of your choosing.
 
 
 ## License
