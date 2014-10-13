@@ -1,6 +1,6 @@
 {
   "name": "generator-pioneerapp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Scaffold out a front-end web app",
   "license": "BSD",
   "repository": "https://github.com/interactive-pioneers/generator-pioneerapp.git",
@@ -14,7 +14,7 @@
   ],
   "main": "app/index.js",
   "engines": {
-    "node": ">=0.10.31",
+    "node": ">=0.10.0",
     "npm": ">=1.4.23"
   },
   "scripts": {

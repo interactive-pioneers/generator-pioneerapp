@@ -45,15 +45,15 @@ module.exports = yeoman.generators.Base.extend({
       choices: [{
         name: 'Bootstrap',
         value: 'includeBootstrap',
-        checked: true
+        checked: false
       },{
         name: 'Sass',
         value: 'includeSass',
-        checked: false
+        checked: true
       },{
         name: 'Modernizr',
         value: 'includeModernizr',
-        checked: false
+        checked: true
       }]
     }];
 
@@ -68,9 +68,9 @@ module.exports = yeoman.generators.Base.extend({
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includeModernizr = hasFeature('includeModernizr');
 
-      this.includeLibSass = answers.libsass;
-      this.includeRubySass = !answers.libsass;
+      this.includeLibSass = true;
 
+      console.log('prompt reached');
       done();
     }.bind(this));
   },

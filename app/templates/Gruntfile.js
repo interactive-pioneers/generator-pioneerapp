@@ -175,7 +175,16 @@ module.exports = function (grunt) {
           urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
         }
       }
-    },<% if (coffee) { %>
+    },<% } else if (testFramework === 'jasmine') { %>
+
+    // Jasmine testing framework configuration options
+    jasmine: {
+      all: {
+        options: {
+          specs: 'test/spec/{,*/}*.js'
+        }
+      }
+    },<% } %><% if (coffee) { %>
 
     // Compiles CoffeeScript to JavaScript
     coffee: {
@@ -201,10 +210,12 @@ module.exports = function (grunt) {
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
-      options:
+      options: {<% if (includeLibSass) { %>
         sourceMap: true,
         includePaths: ['bower_components']
-      },
+        <% } else { %>
+        loadPath: 'bower_components'
+      <% } %>},
       dist: {
         files: [{
           expand: true,
@@ -458,7 +469,7 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ],
-      tasks: [
+      qa: [
         'jshint',
         'mocha',
         'pngcheck'
