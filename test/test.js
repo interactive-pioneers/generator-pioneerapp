@@ -29,6 +29,18 @@ describe('Webapp generator', function () {
       'app/robots.txt',
       'app/index.html'
     ];
+    var assemble = [
+      'src/templates/pages/index.hbs',
+      'src/data/config.yml',
+      'src/templates/layouts/default.hbs',
+      'src/templates/partials/header.hbs',
+      'src/templates/partials/footer.hbs'
+    ];
+    var assembleI18N = [
+      'src/data/i18n/i18n.yml',
+      'src/data/i18n/en_GB.yml',
+      'src/data/i18n/de_DE.yml'
+    ];
 
     var options = {
       'skip-install-message': true,
@@ -179,14 +191,14 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected clean Assemble structure', function (done) {
+    it('creates expected i18n-capable Assemble structure', function (done) {
       runGen.withOptions(options).withPrompt({
         features: ['includeAssemble', 'includeI18N']
       }).on('end', function () {
 
         assert.fileContent([
           ['Gruntfile.js', /assemble/],
-          ['app/index.html', /i18n data by Assemble/]
+          ['app/index.html', /i18n data by Assemble/],
         ]);
 
         done();
