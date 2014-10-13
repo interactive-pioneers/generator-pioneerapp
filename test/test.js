@@ -165,7 +165,34 @@ describe('Webapp generator', function () {
       });
     });
 
-    // TODO add test against Assemble
+    it('creates expected clean Assemble structure', function (done) {
+      runGen.withOptions(options).withPrompt({
+        features: ['includeAssemble']
+      }).on('end', function () {
+
+        assert.fileContent([
+          ['Gruntfile.js', /assemble/],
+          ['app/index.html', /YFM data by Assemble/]
+        ]);
+
+        done();
+      });
+    });
+
+    it('creates expected clean Assemble structure', function (done) {
+      runGen.withOptions(options).withPrompt({
+        features: ['includeAssemble', 'includeI18N']
+      }).on('end', function () {
+
+        assert.fileContent([
+          ['Gruntfile.js', /assemble/],
+          ['app/index.html', /i18n data by Assemble/]
+        ]);
+
+        done();
+      });
+    });
+
     // TODO add test against Assemble I18N
   });
 });
