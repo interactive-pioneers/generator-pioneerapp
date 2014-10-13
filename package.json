@@ -1,14 +1,21 @@
 {
-  "name": "generator-webapp",
-  "version": "0.5.1",
+  "name": "generator-pioneerapp",
+  "version": "0.0.1",
   "description": "Scaffold out a front-end web app",
   "license": "BSD",
-  "repository": "yeoman/generator-webapp",
+  "repository": "https://github.com/interactive-pioneers/generator-pioneerapp.git",
   "author": "The Yeoman Team",
+  "contributors": [
+    {
+      "name": "Ain Tohvri",
+      "email": "at@interactive-pioneers.de",
+      "url": "http://github.com/ain"
+    }
+  ],
   "main": "app/index.js",
   "engines": {
-    "node": ">=0.10.0",
-    "npm": ">=1.2.10"
+    "node": ">=0.10.31",
+    "npm": ">=1.4.23"
   },
   "scripts": {
     "test": "mocha --reporter spec"
