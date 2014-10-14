@@ -182,10 +182,12 @@ describe('Webapp generator', function () {
         features: ['includeAssemble']
       }).on('end', function () {
 
-        assert.fileContent([
+        assert.file(assemble);
+
+        assert.fileContent(
           ['Gruntfile.js', /assemble/],
-          ['app/index.html', /YFM data by Assemble/]
-        ]);
+          ['src/templates/pages/index.hbs', /{title}/]
+        );
 
         done();
       });
@@ -196,15 +198,17 @@ describe('Webapp generator', function () {
         features: ['includeAssemble', 'includeI18N']
       }).on('end', function () {
 
-        assert.fileContent([
-          ['Gruntfile.js', /assemble/],
-          ['app/index.html', /i18n data by Assemble/],
-        ]);
+        assert.file([].concat(assemble, assembleI18N));
+
+        assert.fileContent(
+          ['Gruntfile.js', /assemble-contrib-i18n/],
+          ['Gruntfile.js', /assemble-contrib-permalinks/],
+          ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/]
+        );
 
         done();
       });
     });
 
-    // TODO add test against Assemble I18N
   });
 });
