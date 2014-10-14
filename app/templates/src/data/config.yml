@@ -1,0 +1,9 @@
+path:
+  script: scripts/
+  styles: styles/
+  image:
+    layout: images/layout/
+    temp: images/temp/
+    style: images/style/
+  bower: bower_components/
+  video: images/videos/

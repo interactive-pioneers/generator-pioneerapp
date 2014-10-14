@@ -1,0 +1,10 @@
+lang: "en_GB"
+name: "United Kingdom"
+title: "Site title"
+meta:
+  keywords: "META keywords"
+  sharing: "Sharing text"
+  canonical: "en_GB"
+  description: "META description"
+  metalang: "en"
+content: "i18n data by Assemble"

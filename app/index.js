@@ -54,6 +54,14 @@ module.exports = yeoman.generators.Base.extend({
         name: 'Modernizr',
         value: 'includeModernizr',
         checked: true
+      }, {
+        name: 'Assemble',
+        value: 'includeAssemble',
+        checked: true
+      }, {
+        name: 'Assemble i18n',
+        value: 'includeAssembleI18N',
+        checked: false
       }]
     }];
 
@@ -67,10 +75,11 @@ module.exports = yeoman.generators.Base.extend({
       this.includeSass = hasFeature('includeSass');
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includeModernizr = hasFeature('includeModernizr');
+      this.includeAssemble = hasFeature('includeAssemble');
+      this.includeAssembleI18N = hasFeature('includeAssembleI18N');
 
       this.includeLibSass = true;
 
-      console.log('prompt reached');
       done();
     }.bind(this));
   },
@@ -179,6 +188,22 @@ module.exports = yeoman.generators.Base.extend({
     }
     else {
       this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
+    }
+  },
+
+  src: function() {
+    if (this.includeAssemble || this.includeAssembleI18N) {
+      this.directory('src');
+      this.mkdir('src/data');
+      this.mkdir('src/templates/layouts');
+      this.mkdir('src/templates/pages');
+      this.mkdir('src/templates/partials');
+
+      this.template('config.yml', 'src/data/config.yml');
+
+      if (this.includeAssembleI18N) {
+        this.mkdir('src/data/i18n');
+      }
     }
   },
 

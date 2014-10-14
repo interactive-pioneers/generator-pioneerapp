@@ -1,0 +1,10 @@
+lang: "de_DE"
+name: "Deutschland"
+title: "Site title"
+meta:
+  keywords: "META keywords"
+  sharing: "Sharing text"
+  cannonical: "de_DE"
+  description: "META description"
+  metalang: "de"
+content: "i18n data by Assemble"
