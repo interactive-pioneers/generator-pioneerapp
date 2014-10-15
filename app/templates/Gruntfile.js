@@ -483,6 +483,12 @@ module.exports = function (grunt) {
         'mocha',
         'pngcheck'
       ]
+    },
+
+    pngcheck: {
+      files: {
+        src: ['<%%= config.app %>/images/{,**/}*.png']
+      }
     }
   });
 
@@ -545,7 +551,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'test',
+    'concurrent:qa',
     'build'
   ]);
 };
