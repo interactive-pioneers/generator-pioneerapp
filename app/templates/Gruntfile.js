@@ -77,20 +77,20 @@ module.exports = function (grunt) {
         files: [
           '<%%= config.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',<% if (coffee) { %>
-          '.tmp/scripts/{,*/}*.js',<% } %>
+          '{.tmp,<%%= config.app %>}/scripts/{,*/}*.js',<% } %>
           '<%%= config.app %>/images/{,*/}*'
         ]
       },
       templateRoot: {
-        files: ['<%= config.src %>/templates/pages/*.hbs'],
+        files: ['<%%= config.src %>/templates/pages/*.hbs'],
         tasks: ['newer:assemble:index']
       },
       // newer task can not be used over structural reasons.
       template: {
         files: [
-          '<%= config.src %>/data/*.yml',
-          '<%= config.src %>/templates/{partials,layouts}/*.hbs',
-          '<%= config.src %>/templates/pages/*/*.hbs'
+          '<%%= config.src %>/data/*.yml',
+          '<%%= config.src %>/templates/{partials,layouts}/*.hbs',
+          '<%%= config.src %>/templates/pages/*/*.hbs'
         ],
         tasks: ['assemble:pages']
       }
@@ -103,7 +103,7 @@ module.exports = function (grunt) {
         open: true,
         livereload: 35729,
         // Change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
+        hostname: '0.0.0.0'
       },
       livereload: {
         options: {
@@ -437,17 +437,35 @@ module.exports = function (grunt) {
       options: {
         flatten: false,
         layoutext: '.hbs',
-        assets: '<%= config.app %>/',
-        layoutdir: '<%= config.src %>/templates/layouts',
-        partials: ['<%= config.src %>/templates/partials/*.hbs'],
-        data: ['<%= config.src %>/data/*.yml']
+        assets: '<%%= config.app %>/',
+        layoutdir: '<%%= config.src %>/templates/layouts',
+        partials: ['<%%= config.src %>/templates/partials/*.hbs'],
+        data: ['<%%= config.src %>/data/<% if (includeAssembleI18N) { %>{i18n/,}<% } %>*.yml'],
+        helpers: []
       },
       pages: {
         options: {
-          plugins: []
+          plugins: [<% if (includeAssembleI18N) { %>
+            'assemble-contrib-i18n', <% } %>
+            'assemble-contrib-permalinks'
+          ],
+          permalinks: {
+            structure: ':language/:section/:slug:ext'
+          }<% if (includeAssembleI18N) { %>,
+          i18n: {
+            data: 'src/data/i18n/*.yml',
+            templates: ['src/templates/pages/*/**.hbs'],
+            // Universal keys included for a page in all available languages.
+            unikeys: ['name'],
+            /*
+             * Force garbage collection upon every language compilation.
+             * Requires node --expose-gc flag (pipe through Node).
+             */
+            gc: true
+          } <% } %>
         },
-        src: '<%= config.src %>/pages/{,*/}*.hbs',
-        dest: '<%= config.app %>/'
+        src: <% if (includeAssembleI18N) { %> '<%%= config.src %>/pages/{,*/}*.hbs' <% } else { %> '!*.*' <% } %>,
+        dest: '<%%= config.app %>/'
       }
     },
 

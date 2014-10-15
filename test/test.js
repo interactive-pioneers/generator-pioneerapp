@@ -184,6 +184,8 @@ describe('Webapp generator', function () {
 
         assert.file(assemble);
 
+        assert.noFile(assembleI18N);
+
         assert.fileContent([
           ['Gruntfile.js', /assemble/],
           ['src/templates/pages/index.hbs', /{title}/]
@@ -195,7 +197,7 @@ describe('Webapp generator', function () {
 
     it('creates expected i18n-capable Assemble structure', function (done) {
       runGen.withOptions(options).withPrompt({
-        features: ['includeAssemble', 'includeI18N']
+        features: ['includeAssemble', 'includeAssembleI18N']
       }).on('end', function () {
 
         assert.file([].concat(assemble, assembleI18N));
