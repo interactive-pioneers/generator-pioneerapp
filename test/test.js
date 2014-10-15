@@ -184,10 +184,10 @@ describe('Webapp generator', function () {
 
         assert.file(assemble);
 
-        assert.fileContent(
+        assert.fileContent([
           ['Gruntfile.js', /assemble/],
           ['src/templates/pages/index.hbs', /{title}/]
-        );
+        ]);
 
         done();
       });
@@ -200,11 +200,11 @@ describe('Webapp generator', function () {
 
         assert.file([].concat(assemble, assembleI18N));
 
-        assert.fileContent(
+        assert.fileContent([
           ['Gruntfile.js', /assemble-contrib-i18n/],
           ['Gruntfile.js', /assemble-contrib-permalinks/],
           ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/]
-        );
+        ]);
 
         done();
       });
