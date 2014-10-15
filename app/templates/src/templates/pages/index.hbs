@@ -1,16 +1,16 @@
 ---
-title: <%= i18n[language].title %>
+title: <%%= i18n[language].title %>
 layout: default
 # No permalink structure for front page. Entry point.
 # Front page is language independent. Go directly at data.
 slug: index
-url: /<%= language %>/<%= section %>/<%= slug %>.html
+url: /<%%= language %>/<%%= section %>/<%%= slug %>.html
 meta:
-  sharing: <%= i18n[language].meta.sharing %>
-  description: <%= i18n[language].meta.description %>
-  lang: <%= i18n[language].meta.metalang %>
-  keywords: <%= i18n[language].meta.keywords %>
-  canonical: /<%= i18n[language].meta.canonical %>/<%= section %>/
+  sharing: <%%= i18n[language].meta.sharing %>
+  description: <%%= i18n[language].meta.description %>
+  lang: <%%= i18n[language].meta.metalang %>
+  keywords: <%%= i18n[language].meta.keywords %>
+  canonical: /<%%= i18n[language].meta.canonical %>/<%%= section %>/
 ---
 
 <section>

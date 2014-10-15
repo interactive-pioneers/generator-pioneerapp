@@ -199,7 +199,11 @@ module.exports = yeoman.generators.Base.extend({
       this.mkdir('src/templates/pages');
       this.mkdir('src/templates/partials');
 
-      this.template('config.yml', 'src/data/config.yml');
+      this.template('src/data/config.yml', 'src/data/config.yml');
+      this.template('src/templates/pages/index.hbs', 'src/templates/pages/index.hbs');
+      this.template('src/templates/layouts/default.hbs', 'src/templates/layouts/default.hbs');
+      this.template('src/templates/partials/header.hbs', 'src/templates/partials/header.hbs');
+      this.template('src/templates/partials/footer.hbs', 'src/templates/partials/footer.hbs');
 
       if (this.includeAssembleI18N) {
         this.mkdir('src/data/i18n');
