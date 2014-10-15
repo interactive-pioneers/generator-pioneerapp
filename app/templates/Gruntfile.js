@@ -165,7 +165,7 @@ module.exports = function (grunt) {
         '!<%%= config.app %>/scripts/vendor/*',
         'test/spec/{,*/}*.js'
       ]
-    },<% if (testFramework === 'mocha') { %>
+    },
 
     // Mocha testing framework configuration options
     mocha: {
@@ -175,16 +175,7 @@ module.exports = function (grunt) {
           urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
         }
       }
-    },<% } else if (testFramework === 'jasmine') { %>
-
-    // Jasmine testing framework configuration options
-    jasmine: {
-      all: {
-        options: {
-          specs: 'test/spec/{,*/}*.js'
-        }
-      }
-    },<% } %><% if (coffee) { %>
+    },<% if (coffee) { %>
 
     // Compiles CoffeeScript to JavaScript
     coffee: {
@@ -536,8 +527,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'assemble',
+    'clean:dist',<% if (includeAssemble || includeAssembleI18N) { %>
+    'assemble',<% } %>
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
