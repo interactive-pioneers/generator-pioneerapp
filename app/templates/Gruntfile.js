@@ -438,7 +438,7 @@ module.exports = function (grunt) {
         options: {
           plugins: [<% if (includeAssembleI18N) { %>
             'assemble-contrib-i18n', <% } %>
-            'assemble-contrib-permalinks'
+            'assemble-middleware-permalinks'
           ],
           permalinks: {
             structure: ':language/:section/:slug:ext'

@@ -25,13 +25,15 @@
     "grunt-usemin": "^2.3.0",
     "grunt-wiredep": "^1.7.0",
     "jshint-stylish": "^0.4.0",
-    "time-grunt": "^0.4.0",
+    "time-grunt": "^0.4.0",<% if (includeAssembleI18N) { %>
+    "assemble-contrib-i18n": "git+https://github.com/interactive-pioneers/assemble-contrib-i18n.git#unikeys-with-gc",<% } %>
     "grunt-pngcheck":  "^0.1.0",
     "grunt-browser-sync": "^1.5.3",
     "grunt-html-validation": "^0.1.18",
-    "mocha-bamboo-reporter": "^1.0.5",
-    "jit-grunt": "^0.8.0",
-    "assemble": "^0.4.42"
+    "jit-grunt": "^0.8.0",<% if (includeAssemble) { %>
+    "assemble": "^0.4.42",
+    "assemble-middleware-permalinks": "^0.5.2",<% } %>
+    "mocha-bamboo-reporter": "^1.0.5"
   },
   "engines": {
     "node": ">=0.10.0"

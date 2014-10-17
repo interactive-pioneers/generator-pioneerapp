@@ -173,6 +173,12 @@ describe('Webapp generator', function () {
           ['bower.json', /bootstrap-sass-official/]
         ]);
 
+        assert.noFileContent([
+          ['package.json', /"assemble":/],
+          ['package.json', /"assemble-middleware-permalinks":/],
+          ['package.json', /"assemble-contrib-i18n":/]
+        ]);
+
         done();
       });
     });
@@ -188,7 +194,13 @@ describe('Webapp generator', function () {
 
         assert.fileContent([
           ['Gruntfile.js', /assemble/],
-          ['src/templates/pages/index.hbs', /{title}/]
+          ['src/templates/pages/index.hbs', /{title}/],
+          ['package.json', /"assemble":/],
+          ['package.json', /"assemble-middleware-permalinks":/]
+        ]);
+
+        assert.noFileContent([
+          ['package.json', /"assemble-contrib-i18n":/]
         ]);
 
         done();
@@ -204,8 +216,11 @@ describe('Webapp generator', function () {
 
         assert.fileContent([
           ['Gruntfile.js', /assemble-contrib-i18n/],
-          ['Gruntfile.js', /assemble-contrib-permalinks/],
-          ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/]
+          ['Gruntfile.js', /assemble-middleware-permalinks/],
+          ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/],
+          ['package.json', /"assemble":/],
+          ['package.json', /"assemble-middleware-permalinks":/],
+          ['package.json', /"assemble-contrib-i18n":/]
         ]);
 
         done();
