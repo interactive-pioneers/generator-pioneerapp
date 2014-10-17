@@ -41,6 +41,14 @@ describe('Webapp generator', function () {
       'src/data/i18n/en_GB.yml',
       'src/data/i18n/de_DE.yml'
     ];
+    var assembleI18NFileContent = [
+      ['Gruntfile.js', /assemble-contrib-i18n/],
+      ['Gruntfile.js', /assemble-middleware-permalinks/],
+      ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/],
+      ['package.json', /"assemble":/],
+      ['package.json', /"assemble-middleware-permalinks":/],
+      ['package.json', /"assemble-contrib-i18n":/]
+    ];
 
     var options = {
       'skip-install-message': true,
@@ -214,14 +222,20 @@ describe('Webapp generator', function () {
 
         assert.file([].concat(assemble, assembleI18N));
 
-        assert.fileContent([
-          ['Gruntfile.js', /assemble-contrib-i18n/],
-          ['Gruntfile.js', /assemble-middleware-permalinks/],
-          ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/],
-          ['package.json', /"assemble":/],
-          ['package.json', /"assemble-middleware-permalinks":/],
-          ['package.json', /"assemble-contrib-i18n":/]
-        ]);
+        assert.fileContent(assembleI18NFileContent);
+
+        done();
+      });
+    });
+
+    it('creates expected i18n-capable Assemble structure without Assemble selected', function (done) {
+      runGen.withOptions(options).withPrompt({
+        features: ['includeAssembleI18N']
+      }).on('end', function () {
+
+        assert.file([].concat(assemble, assembleI18N));
+
+        assert.fileContent(assembleI18NFileContent);
 
         done();
       });

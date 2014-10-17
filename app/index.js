@@ -78,6 +78,10 @@ module.exports = yeoman.generators.Base.extend({
       this.includeAssemble = hasFeature('includeAssemble');
       this.includeAssembleI18N = hasFeature('includeAssembleI18N');
 
+      if (this.includeAssembleI18N) {
+        this.includeAssemble = true;
+      }
+
       this.includeLibSass = true;
 
       done();
