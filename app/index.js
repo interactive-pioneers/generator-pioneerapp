@@ -43,10 +43,6 @@ module.exports = yeoman.generators.Base.extend({
       name: 'features',
       message: 'What more would you like?',
       choices: [{
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
-        checked: false
-      },{
         name: 'Sass',
         value: 'includeSass',
         checked: true
@@ -61,6 +57,10 @@ module.exports = yeoman.generators.Base.extend({
       }, {
         name: 'Assemble i18n',
         value: 'includeAssembleI18N',
+        checked: false
+      }, {
+        name: 'Bootstrap',
+        value: 'includeBootstrap',
         checked: false
       }]
     }];
