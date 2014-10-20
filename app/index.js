@@ -96,6 +96,10 @@ module.exports = yeoman.generators.Base.extend({
     this.template('_package.json', 'package.json');
   },
 
+  readme: function() {
+    this.template('README.md');
+  },
+
   git: function () {
     this.template('gitignore', '.gitignore');
     this.copy('gitattributes', '.gitattributes');

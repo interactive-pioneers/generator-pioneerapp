@@ -1,5 +1,9 @@
 {
   "name": "<%= _.slugify(appname) %>",
+  "version": "0.0.1",
+  "description": "<App description>",
+  "license": "<Licence. See https://spdx.org/licenses/>",
+  "repository": "<Repository URI here>",
   "devDependencies": {
     "apache-server-configs": "^2.7.1",
     "grunt": "^0.4.5",
