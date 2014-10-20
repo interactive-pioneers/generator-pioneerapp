@@ -172,9 +172,17 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
-          urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
-        }
-      }
+          reporter: './node_modules/mocha-bamboo-reporter'
+        },
+        src: ['test/*.html']
+      },
+      reportless: {
+        options: {
+          run: true,
+          log: true
+        },
+        src: ['test/*.html']
+      },
     },<% if (coffee) { %>
 
     // Compiles CoffeeScript to JavaScript
