@@ -506,7 +506,7 @@ module.exports = function (grunt) {
           '!<%%= config.app %>/bower_components/{,**/}*.html'
         ]
       }
-    }
+    },
 
     pngcheck: {
       files: {
