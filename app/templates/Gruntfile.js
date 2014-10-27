@@ -57,7 +57,7 @@ module.exports = function (grunt) {
       },
       jstest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['test:watch']
+        tasks: ['mocha:reportless']
       },<% } %>
       gruntfile: {
         files: ['Gruntfile.js']
@@ -168,6 +168,8 @@ module.exports = function (grunt) {
     },
 
     // Mocha testing framework configuration options
+    <% // TODO optimise
+    // TODO finalise mocha generation so that it would safely fall through %>
     mocha: {
       all: {
         options: {
@@ -488,7 +490,8 @@ module.exports = function (grunt) {
       ],
       qa: [
         'jshint',
-        'mocha',
+        <% // TODO finalise mocha generation so that it would safely fall through %>
+        //'mocha',
         'pngcheck'
       ]
     },
