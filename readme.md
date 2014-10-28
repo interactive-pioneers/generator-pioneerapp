@@ -1,6 +1,6 @@
 # Web app generator [![Build Status](https://secure.travis-ci.org/interactive-pioneers/generator-pioneerapp.svg?branch=master)](http://travis-ci.org/interactive-pioneers/generator-pioneerapp)
 
-[Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app optimised for performance i18n functionality.
+[Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app optimised for performant i18n functionality.
 
 ![](http://i.imgur.com/uKTT2Hj.png)
 
