@@ -1,6 +1,6 @@
 # Web app generator [![Build Status](https://secure.travis-ci.org/interactive-pioneers/generator-pioneerapp.svg?branch=master)](http://travis-ci.org/interactive-pioneers/generator-pioneerapp)
 
-[Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app.
+[Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app optimised for performance i18n functionality.
 
 ![](http://i.imgur.com/uKTT2Hj.png)
 
@@ -8,11 +8,14 @@
 
 * CSS Autoprefixing
 * Built-in preview server with LiveReload
-* Automagically compile CoffeeScript & Sass
+* Live CSS injection with BrowserSync
+* Automagically compile CoffeeScript & Sass (libsass)
 * Automagically lint your scripts
 * Automagically wire up your Bower components with [grunt-wiredep](#third-party-dependencies).
 * Awesome Image Optimization (via OptiPNG, pngquant, jpegtran and gifsicle)
 * Mocha Unit Testing with PhantomJS
+* Assemble template system (Optional)
+* Assemble template system with i18n (Optional)
 * Bootstrap for Sass (Optional)
 * Leaner Modernizr builds (Optional)
 
