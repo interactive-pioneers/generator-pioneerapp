@@ -81,11 +81,11 @@ module.exports = function (grunt) {
           '<%%= config.app %>/images/{,*/}*'
         ]
       },<% if (includeAssemble) { %>
+      // newer task can not be used over structural reasons in case of i18n.
       templateRoot: {
         files: ['<%%= config.src %>/templates/pages/*.hbs'],
         tasks: ['<% if (!includeAssembleI18N) { %>newer:<% } %>assemble:index']
       },
-      // newer task can not be used over structural reasons.
       template: {
         files: [
           '<%%= config.src %>/data/*.yml',
