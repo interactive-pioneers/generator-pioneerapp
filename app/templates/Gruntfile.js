@@ -80,10 +80,10 @@ module.exports = function (grunt) {
           '{.tmp,<%%= config.app %>}/scripts/{,*/}*.js',<% } %>
           '<%%= config.app %>/images/{,*/}*'
         ]
-      },
+      },<% if (includeAssemble) { %>
       templateRoot: {
         files: ['<%%= config.src %>/templates/pages/*.hbs'],
-        tasks: ['newer:assemble:index']
+        tasks: ['<% if (!includeAssembleI18N) { %>newer:<% } %>assemble:index']
       },
       // newer task can not be used over structural reasons.
       template: {
@@ -92,8 +92,8 @@ module.exports = function (grunt) {
           '<%%= config.src %>/templates/{partials,layouts}/*.hbs',
           '<%%= config.src %>/templates/pages/*/*.hbs'
         ],
-        tasks: ['assemble:pages']
-      }
+        tasks: ['<% if (!includeAssembleI18N) { %>newer:<% } %>assemble:pages']
+      }<% } %>
     },
 
     // The actual grunt server settings

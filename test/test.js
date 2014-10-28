@@ -45,6 +45,7 @@ describe('Webapp generator', function () {
     var assembleI18NFileContent = [
       ['Gruntfile.js', /assemble-contrib-i18n/],
       ['Gruntfile.js', /assemble-middleware-permalinks/],
+      ['Gruntfile.js', /templateRoot:/],
       ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/],
       ['package.json', /"assemble":/],
       ['package.json', /"assemble-middleware-permalinks":/],
@@ -203,6 +204,8 @@ describe('Webapp generator', function () {
 
         assert.fileContent([
           ['Gruntfile.js', /assemble/],
+          ['Gruntfile.js', /newer:assemble:index/],
+          ['Gruntfile.js', /newer:assemble:pages/],
           ['src/templates/pages/index.hbs', /{title}/],
           ['package.json', /"assemble":/],
           ['package.json', /"assemble-middleware-permalinks":/]
@@ -224,6 +227,11 @@ describe('Webapp generator', function () {
         assert.file([].concat(assemble, assembleI18N));
 
         assert.fileContent(assembleI18NFileContent);
+
+        assert.noFileContent([
+          ['Gruntfile.js', /newer:assemble:index/],
+          ['Gruntfile.js', /newer:assemble:pages/],
+        ]);
 
         done();
       });
