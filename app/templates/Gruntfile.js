@@ -436,19 +436,36 @@ module.exports = function (grunt) {
 
     assemble: {
       options: {
-        flatten: false,
+        flatten: true,
         layoutext: '.hbs',
         assets: '<%%= config.app %>/',
         layoutdir: '<%%= config.src %>/templates/layouts',
         partials: ['<%%= config.src %>/templates/partials/*.hbs'],
         data: ['<%%= config.src %>/data/<% if (includeAssembleI18N) { %>{i18n/,}<% } %>*.yml'],
         helpers: []
-      },
+      },<% if (includeAssembleI18N) { %>
+      <% // TODO implement default language into scaffold options %>
+      index: {
+        options: {
+          plugins: ['assemble-contrib-i18n', 'assemble-contrib-permalinks'],
+          i18n: {
+            languages: ['de_DE'],
+            language: 'de_DE',
+            data: '<%%= config.src %>/data/i18n/de_DE.yml',
+            templates: ['<%%= config.src %>/templates/pages/*.hbs'],
+          },
+          permalinks: {
+            structure: ':slug:ext'
+          }
+        },
+        src: '!*.*',
+        dest: '<%%= config.app %>/'
+      },<% } %>
       pages: {
         options: {
           plugins: [<% if (includeAssembleI18N) { %>
             'assemble-contrib-i18n', <% } %>
-            'assemble-middleware-permalinks'
+            'assemble-contrib-permalinks'
           ],
           permalinks: {
             structure: ':language/:section/:slug:ext'
@@ -475,8 +492,14 @@ module.exports = function (grunt) {
       server: [<% if (includeSass) { %>
         'sass:server',<% } if (coffee) {  %>
         'coffee:dist',<% } %>
-        'copy:styles'
-      ],
+        'copy:styles',<% if (includeAssemble) { %>
+        <% if (includeAssembleI18N) { %>'assemble:index',<% } %>
+        'assemble:pages'<% } %>
+      ],<% if (includeAssemble) { %>
+      assemble: [
+        <% if (includeAssembleI18N) { %>'assemble:index',<% } %>
+        'assemble:pages'
+      ],<% } %>
       test: [<% if (coffee) { %>
         'coffee',<% } %>
         'copy:styles'
@@ -583,8 +606,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',<% if (includeAssemble || includeAssembleI18N) { %>
-    'assemble',<% } %>
+    'wiredep',<% if (includeAssemble) { %>
+    'concurrent:assemble',<% } %>
     'concurrent:qa',
     'useminPrepare',
     'concurrent:dist',

@@ -36,7 +36,7 @@
     "grunt-html-validation": "^0.1.18",
     "jit-grunt": "^0.8.0",<% if (includeAssemble) { %>
     "assemble": "^0.4.42",
-    "assemble-middleware-permalinks": "^0.5.2",<% } %>
+    "assemble-contrib-permalinks": "git+https://github.com/assemble/assemble-middleware-permalinks.git#35eeca25d6fb3e3834f7407327face6e0e0eca68",<% } %>
     "mocha-bamboo-reporter": "^1.0.5"
   },
   "engines": {
