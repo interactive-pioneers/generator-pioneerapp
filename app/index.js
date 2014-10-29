@@ -57,7 +57,7 @@ module.exports = yeoman.generators.Base.extend({
       }, {
         name: 'Assemble i18n',
         value: 'includeAssembleI18N',
-        checked: false
+        checked: true
       }, {
         name: 'Bootstrap',
         value: 'includeBootstrap',
