@@ -218,6 +218,8 @@ module.exports = yeoman.generators.Base.extend({
         this.template('.src/data/i18n/de_DE.yml', 'src/data/i18n/de_DE.yml');
         this.template('.src/data/i18n/en_GB.yml', 'src/data/i18n/en_GB.yml');
         this.template('.src/data/i18n/i18n.yml', 'src/data/i18n/i18n.yml');
+        this.mkdir('src/templates/pages/home');
+        this.template('.src/templates/pages/home/index.hbs', 'src/templates/pages/home/index.hbs');
       }
     }
   },

@@ -1,0 +1,20 @@
+---
+title: <%%= i18n[language].title %> | Home
+layout: default
+slug: index
+section: about
+url: /<%%= language %>/<%%= section %>/<%%= slug %>.html
+meta:
+  sharing: <%%= i18n[language].meta.sharing %>
+  description: <%%= i18n[language].meta.description %>
+  lang: <%%= i18n[language].meta.metalang %>
+  keywords: <%%= i18n[language].meta.keywords %>
+  canonical: /<%%= i18n[language].meta.canonical %>/
+---
+
+<section>
+  <h1>{{title}}</h1>
+  <div>
+    {{{i18n "content"}}}
+  </div>
+</section>

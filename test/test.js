@@ -40,7 +40,8 @@ describe('Webapp generator', function () {
     var assembleI18N = [
       'src/data/i18n/i18n.yml',
       'src/data/i18n/en_GB.yml',
-      'src/data/i18n/de_DE.yml'
+      'src/data/i18n/de_DE.yml',
+      'src/templates/pages/home/index.hbs'
     ];
     var assembleI18NFileContent = [
       ['Gruntfile.js', /assemble-contrib-i18n/],
