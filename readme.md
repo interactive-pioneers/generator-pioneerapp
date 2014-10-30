@@ -24,8 +24,8 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
 ## Getting Started
 
-- Install: `npm install -g generator-webapp`
-- Run: `yo webapp`
+- Install: `npm install -g generator-pioneerapp`
+- Run: `yo pioneerapp`
 - Run `grunt` for building and `grunt serve` for preview[\*](#grunt-serve-note). `--allow-remote` option for remote access.
 
 #### Installing the very latest
