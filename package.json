@@ -1,6 +1,6 @@
 {
   "name": "generator-pioneerapp",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Scaffold out a front-end web app",
   "license": "BSD",
   "repository": "https://github.com/interactive-pioneers/generator-pioneerapp.git",

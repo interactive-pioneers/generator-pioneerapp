@@ -28,7 +28,13 @@ describe('Webapp generator', function () {
       'README.md',
       'app/favicon.ico',
       'app/robots.txt',
-      'app/index.html'
+      'app/index.html',
+      'app/styles/main.css',
+      'app/images/layout/.gitkeep',
+      'app/images/style/.gitkeep',
+      'app/images/temp/.gitkeep',
+      'app/images/videos/.gitkeep',
+      'app/fonts/.gitkeep'
     ];
     var assemble = [
       'src/templates/pages/index.hbs',
