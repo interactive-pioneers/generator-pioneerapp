@@ -185,8 +185,15 @@ module.exports = yeoman.generators.Base.extend({
     this.directory('app');
     this.mkdir('app/scripts');
     this.mkdir('app/styles');
-    this.mkdir('app/images');
+    this.mkdir('app/images/layout');
+    this.mkdir('app/images/style');
+    this.mkdir('app/images/temp');
+    this.mkdir('app/images/videos');
     this.write('app/index.html', this.indexFile);
+    this.write('app/images/layout/.gitkeep', '');
+    this.write('app/images/style/.gitkeep', '');
+    this.write('app/images/temp/.gitkeep', '');
+    this.write('app/images/videos/.gitkeep', '');
 
     if (this.coffee) {
       this.write(
