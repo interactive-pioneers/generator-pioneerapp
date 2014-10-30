@@ -202,9 +202,13 @@ module.exports = yeoman.generators.Base.extend({
         'app/scripts/main.coffee',
         'console.log "\'Allo from CoffeeScript!"'
       );
+      this.write('app/scripts/debug.coffee', '');
+      this.write('app/scripts/ie.coffee', '');
     }
     else {
       this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
+      this.write('app/scripts/debug.js', '');
+      this.write('app/scripts/ie.js', '');
     }
   },
 
