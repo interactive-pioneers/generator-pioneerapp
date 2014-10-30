@@ -7,3 +7,4 @@ nbproject
 *.sw[op]
 .DS_Store
 npm-debug.log
+app/**/*.html
