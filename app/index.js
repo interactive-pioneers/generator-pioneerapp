@@ -210,6 +210,15 @@ module.exports = yeoman.generators.Base.extend({
       this.write('app/scripts/debug.js', '');
       this.write('app/scripts/ie.js', '');
     }
+
+    if (this.includeSass) {
+      this.mkdir('app/styles/base');
+      this.mkdir('app/styles/generic');
+      this.mkdir('app/styles/gui');
+      this.write('app/styles/gui/.gitkeep', '');
+      this.write('app/styles/generic/.gitkeep', '');
+      this.write('app/styles/base/.gitkeep', '');
+    }
   },
 
   src: function() {

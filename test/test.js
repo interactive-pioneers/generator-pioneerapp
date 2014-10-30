@@ -176,6 +176,12 @@ describe('Webapp generator', function () {
         libsass: true
       }).on('end', function () {
 
+        assert.file([
+          'app/styles/base/.gitkeep',
+          'app/styles/gui/.gitkeep',
+          'app/styles/generic/.gitkeep'
+        ]);
+
         assert.fileContent([
           ['package.json', /grunt-sass/]
         ]);
@@ -223,7 +229,7 @@ describe('Webapp generator', function () {
           ['Gruntfile.js', /assemble/],
           ['Gruntfile.js', /newer:assemble:index/],
           ['Gruntfile.js', /newer:assemble:pages/],
-          ['src/templates/pages/index.hbs', /{title}/],
+          ['src/templates/pages/index.hbs', /{{title}}/],
           ['package.json', /"assemble":/],
           ['package.json', /"assemble-contrib-permalinks":/]
         ]);
