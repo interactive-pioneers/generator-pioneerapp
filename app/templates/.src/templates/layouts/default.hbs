@@ -23,9 +23,7 @@
     <!-- build:css(.tmp) {{assets}}{{config.path.styles}}main.css -->
     <link rel="stylesheet" href="{{assets}}{{config.path.styles}}main.css" type="text/css" media="all">
     <!-- endbuild -->
-    <!-- build:js {{assets}}{{config.path.script}}modernizr.js -->
-    <script src="{{assets}}{{config.path.bower}}modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+    <script src="{{assets}}{{config.path.scripts}}vendor/modernizr.js"></script>
     <!--[if IE 8]>
     <script src="{{assets}}{{config.path.script}}ie.js"></script>
     <![endif]-->
@@ -42,7 +40,7 @@
     </div>
     <!-- build:js {{assets}}{{config.path.script}}vendor.js -->
     <!-- bower:js -->
-    <!--<script src="{{assets}}{{config.path.bower}}component/component.js"></script>-->
+    <script src="{{assets}}{{config.path.bower}}jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js {{assets}}{{config.path.script}}main.js -->
