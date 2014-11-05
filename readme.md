@@ -62,35 +62,25 @@ The components are installed in the root of the project at `/bower_components`. 
 Note: `grunt server` was used for previewing in earlier versions of the project, and has since been deprecated in favor of `grunt serve`.
 
 
-## Docs
-
-We have [recipes](docs/recipes) for integrating other popular technologies like Compass.
-
-
 ## Options
 
 * `--skip-install`
 
   Skips the automatic execution of `bower` and `npm` after scaffolding has finished.
 
-* `--test-framework=<framework>`
-
-  Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
-
 * `--coffee`
 
   Add support for [CoffeeScript](http://coffeescript.org/).
 
 
-## Contribute
+## Contributing
 
-See the [contributing docs](https://github.com/yeoman/yeoman/blob/master/contributing.md).
+* In lieu of a formal styleguide, take care to maintain the existing coding style
+* Add unit tests for any new or changed functionality
+* Lint and test your code using `npm test`
+* When committing code, use [conventional Git commit message(s)](https://github.com/interactive-pioneers/conventions#commits)
+* Submit Pull Request
 
-Note: We are regularly asked whether we can add or take away features. If a change is good enough to have a positive impact on all users, we are happy to consider it.
-
-If not, `generator-pioneerapp` is fork-friendly and you can always maintain a custom version which you `npm install && npm link` to continue using via `yo pioneerapp` or a name of your choosing.
-
-
-## License
+## Licence
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
