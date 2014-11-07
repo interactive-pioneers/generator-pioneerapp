@@ -273,5 +273,21 @@ describe('Webapp generator', function () {
       });
     });
 
+    // TODO implement tests against wiredep
+
+    //it('wiredeps dependencies on Assemble', function (done) {
+      //runGen.withOptions(options).withPrompt({
+        //features: ['includeAssemble']
+      //}).on('end', function () {
+
+
+        //assert.file([].concat(assemble, assembleI18N));
+
+        //assert.fileContent(assembleI18NFileContent);
+
+        //done();
+      //});
+    //});
+
   });
 });
