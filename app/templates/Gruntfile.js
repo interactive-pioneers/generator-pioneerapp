@@ -83,12 +83,16 @@ module.exports = function (grunt) {
       },<% if (includeAssemble) { %>
       // newer task can not be used over structural reasons in case of i18n.
       templateRoot: {
-        files: ['<%%= config.src %>/templates/pages/*.hbs'],
+        files: [
+          '<%%= config.src %>/templates/pages/*.hbs',
+          '<%%= config.src %>/data/{,*/}*.yml',
+          '<%%= config.src %>/templates/{partials,layouts}/*.hbs'
+        ],
         tasks: ['<% if (!includeAssembleI18N) { %>newer:<% } %>assemble:index']
       },
       template: {
         files: [
-          '<%%= config.src %>/data/*.yml',
+          '<%%= config.src %>/data/{,*/}*.yml',
           '<%%= config.src %>/templates/{partials,layouts}/*.hbs',
           '<%%= config.src %>/templates/pages/*/*.hbs'
         ],
