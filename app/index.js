@@ -134,17 +134,24 @@ module.exports = yeoman.Base.extend({
         this.templatePath('README.md'),
         this.destinationPath('README.md'),
         this.templateData
-      )
-    }
-
-    /*git: function() {
-      this.template('gitignore', '.gitignore');
-      this.copy('gitattributes', '.gitattributes');
+      );
     },
 
-    bower: function() {
+    git: function() {
+      this.fs.copyTpl(
+        this.templatePath('gitignore'),
+        this.destinationPath('.gitignore'),
+        this.templateData
+      );
+      this.fs.copy(
+        this.templatePath('gitattributes'),
+        this.destinationPath('.gitattributes')
+      );
+    }
+
+    /*bower: function() {
       var bower = {
-        name: this._.slugify(this.appname),
+        name: this.appname,
         private: true,
         dependencies: {}
       };
@@ -165,11 +172,17 @@ module.exports = yeoman.Base.extend({
     },
 
     jshint: function() {
-      this.copy('jshintrc', '.jshintrc');
+      this.fs.copy(
+        this.templatePath('jshintrc'),
+        this.destinationPath('.jshintrc')
+      );
     },
 
     editorConfig: function() {
-      this.copy('editorconfig', '.editorconfig');
+      this.fs.copy(
+        this.templatePath('editorconfig'),
+        this.destinationPath('.editorconfig')
+      );
     },
 
     mainStylesheet: function() {
