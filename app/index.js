@@ -91,6 +91,18 @@ module.exports = yeoman.Base.extend({
 
       this.includeLibSass = true;
 
+      this.templateData = {
+        includeModernizr: this.includeModernizr,
+        includeSass: this.includeSass,
+        includeAssemble: this.includeAssemble,
+        includeAssembleI18N: this.includeAssembleI18N,
+        includeBootstrap: this.includeBootstrap,
+        includeLibSass: this.includeLibSass,
+        pkg: this.pkg,
+        // TODO: implement CoffeeScript into prompt (or remove completely)
+        coffee: false
+      };
+
       done();
     }.bind(this));
   },
@@ -101,21 +113,11 @@ module.exports = yeoman.Base.extend({
       this.fs.copyTpl(
         this.templatePath('Gruntfile.js'),
         this.destinationPath('Gruntfile.js'),
-        {
-          includeModernizr: this.includeModernizr,
-          includeSass: this.includeSass,
-          includeAssemble: this.includeAssemble,
-          includeAssembleI18N: this.includeAssembleI18N,
-          includeBootstrap: this.includeBootstrap,
-          includeLibSass: this.includeLibSass,
-          pkg: this.pkg,
-          // TODO: implement CoffeeScript into prompt (or remove completely)
-          coffee: false
-        }
+        this.templateData
       );
-    },
+    }
 
-    packageJSON: function() {
+    /*packageJSON: function() {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
@@ -260,7 +262,7 @@ module.exports = yeoman.Base.extend({
           this.template('.src/templates/pages/home/index.hbs', 'src/templates/pages/home/index.hbs');
         }
       }
-    },*/
+    }*/
   },
 
   install: function() {
