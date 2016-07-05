@@ -129,11 +129,15 @@ module.exports = yeoman.Base.extend({
       );
     },
 
-    /*readme: function() {
-      this.template('README.md');
-    },
+    readme: function() {
+      this.fs.copyTpl(
+        this.templatePath('README.md'),
+        this.destinationPath('README.md'),
+        this.templateData
+      )
+    }
 
-    git: function() {
+    /*git: function() {
       this.template('gitignore', '.gitignore');
       this.copy('gitattributes', '.gitattributes');
     },
