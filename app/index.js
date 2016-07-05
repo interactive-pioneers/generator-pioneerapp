@@ -147,7 +147,7 @@ module.exports = yeoman.Base.extend({
         this.templatePath('gitattributes'),
         this.destinationPath('.gitattributes')
       );
-    }
+    },
 
     /*bower: function() {
       var bower = {
@@ -169,16 +169,16 @@ module.exports = yeoman.Base.extend({
 
       this.copy('bowerrc', '.bowerrc');
       this.write('bower.json', JSON.stringify(bower, null, 2));
-    },
+    },*/
 
     jshint: function() {
       this.fs.copy(
         this.templatePath('jshintrc'),
         this.destinationPath('.jshintrc')
       );
-    },
+    }
 
-    editorConfig: function() {
+    /*editorConfig: function() {
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
