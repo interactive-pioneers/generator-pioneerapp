@@ -24,7 +24,7 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
 ## Getting Started
 
-- Install: `npm install -g generator-pioneerapp`
+- Install generator with peer dependencies: `npm i -g generator-pioneerapp yo generator-mocha`
 - Run: `yo pioneerapp`
 - Run `grunt` for building and `grunt serve` for preview[\*](#grunt-serve-note). `--allow-remote` option for remote access.
 
@@ -83,4 +83,4 @@ Note: `grunt server` was used for previewing in earlier versions of the project,
 
 ## Licence
 
-[BSD license](http://opensource.org/licenses/bsd-license.php)
+[GPL-3](LICENSE)
