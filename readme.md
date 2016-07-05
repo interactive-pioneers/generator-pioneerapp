@@ -83,4 +83,4 @@ Note: `grunt server` was used for previewing in earlier versions of the project,
 
 ## Licence
 
-[GPL-3](LICENSE)
+Licenced under [GPL-3](LICENSE).
