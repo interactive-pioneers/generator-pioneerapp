@@ -1,17 +1,13 @@
 'use strict';
 
 var join = require('path').join;
-var yeoman = require('yeoman-generator').Base;
+var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
-module.exports = yeoman.extend({
+module.exports = yeoman.Base.extend({
   constructor: function() {
-    var testLocal = null;
-
-    yosay('construct!');
-
-    yeoman.apply(this, arguments);
+    yeoman.Base.apply(this, arguments);
 
     this.option('skip-welcome-message', {
       desc: 'Skips the welcome message',
@@ -23,19 +19,10 @@ module.exports = yeoman.extend({
       type: Boolean
     });
 
-    // setup the test-framework property, Gruntfile template will need this
-    this.option('test-framework', {
-      desc: 'Test framework to be invoked',
-      type: String,
-      defaults: 'mocha'
-    });
-    this.testFramework = this.options['test-framework'];
+    console.log('testLocal');
+    var testLocal = require.resolve('generator-mocha/generators/app/index.js');
 
-    if (this.options['test-framework'] === 'mocha') {
-      testLocal = require.resolve('generator-mocha/generators/app/index.js');
-    }
-
-    this.composeWith(this.options['test-framework'] + ':app', {
+    this.composeWith('mocha:app', {
       options: {
         'skip-install': this.options['skip-install']
       }
@@ -54,7 +41,7 @@ module.exports = yeoman.extend({
 
     // welcome message
     if (!this.options['skip-welcome-message']) {
-      //this.log(yosay('\'Allo \'allo! Out of the box I include HTML5 Boilerplate, jQuery, and a gruntfile.'));
+      this.log(yosay('\'Allo \'allo! Out of the box I include HTML5 Boilerplate, Mocha, and a gruntfile.'));
     }
 
     var prompts = [{
@@ -84,7 +71,8 @@ module.exports = yeoman.extend({
       }]
     }];
 
-    this.prompt(prompts, function(answers) {
+    this.prompt(prompts).then(function(answers) {
+
       var features = answers.features;
 
       function hasFeature(feat) {
@@ -110,20 +98,29 @@ module.exports = yeoman.extend({
   writing: {
 
     gruntfile: function() {
-      this.log('writing gruntfile');
-      //this.template('Gruntfile.js');
       this.fs.copyTpl(
         this.templatePath('Gruntfile.js'),
-        this.destinationPath('Gruntfile.js')
+        this.destinationPath('Gruntfile.js'),
+        {
+          includeModernizr: this.includeModernizr,
+          includeSass: this.includeSass,
+          includeAssemble: this.includeAssemble,
+          includeAssembleI18N: this.includeAssembleI18N,
+          includeBootstrap: this.includeBootstrap,
+          includeLibSass: this.includeLibSass,
+          pkg: this.pkg,
+          // TODO: implement CoffeeScript into prompt (or disable)
+          coffee: false
+        }
       );
     },
 
-    packageJSON: function() {
-      this.fs.copyTpl(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
-      );
-    },
+    //packageJSON: function() {
+      //this.fs.copyTpl(
+        //this.templatePath('_package.json'),
+        //this.destinationPath('package.json')
+      //);
+    //},
 
     /*packageJSON: function() {
       this.template('_package.json', 'package.json');
@@ -272,8 +269,8 @@ module.exports = yeoman.extend({
 
   install: function() {
     this.installDependencies({
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
+      skipMessage: false, //this.options['skip-install-message'],
+      skipInstall: false //this.options['skip-install']
     });
   },
 
