@@ -109,21 +109,17 @@ module.exports = yeoman.Base.extend({
           includeBootstrap: this.includeBootstrap,
           includeLibSass: this.includeLibSass,
           pkg: this.pkg,
-          // TODO: implement CoffeeScript into prompt (or disable)
+          // TODO: implement CoffeeScript into prompt (or remove completely)
           coffee: false
         }
       );
     },
 
-    //packageJSON: function() {
-      //this.fs.copyTpl(
-        //this.templatePath('_package.json'),
-        //this.destinationPath('package.json')
-      //);
-    //},
-
-    /*packageJSON: function() {
-      this.template('_package.json', 'package.json');
+    packageJSON: function() {
+      this.fs.copyTpl(
+        this.templatePath('_package.json'),
+        this.destinationPath('package.json')
+      );
     },
 
     readme: function() {
