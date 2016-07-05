@@ -1,12 +1,12 @@
 'use strict';
 
 var join = require('path').join;
-var yeoman = require('yeoman-generator');
+var yeoman = require('yeoman-generator').Base;
 var chalk = require('chalk');
 
-module.exports = yeoman.generators.Base.extend({
-  constructor: function () {
-    yeoman.generators.Base.apply(this, arguments);
+module.exports = yeoman.extend({
+  constructor: function() {
+    yeoman.apply(this, arguments);
 
     // setup the test-framework property, Gruntfile template will need this
     this.option('test-framework', {
@@ -26,15 +26,14 @@ module.exports = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
   },
 
-  askFor: function () {
+  askFor: function() {
     var done = this.async();
 
     // welcome message
     if (!this.options['skip-welcome-message']) {
       this.log(require('yosay')());
       this.log(chalk.magenta(
-        'Out of the box I include HTML5 Boilerplate, jQuery, and a ' +
-        'Gruntfile.js to build your app.'
+        'Out of the box I include HTML5 Boilerplate, jQuery, and a Gruntfile.js to build your app.'
       ));
     }
 
@@ -65,7 +64,7 @@ module.exports = yeoman.generators.Base.extend({
       }]
     }];
 
-    this.prompt(prompts, function (answers) {
+    this.prompt(prompts, function(answers) {
       var features = answers.features;
 
       function hasFeature(feat) {
@@ -88,11 +87,11 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  gruntfile: function () {
+  gruntfile: function() {
     this.template('Gruntfile.js');
   },
 
-  packageJSON: function () {
+  packageJSON: function() {
     this.template('_package.json', 'package.json');
   },
 
@@ -100,12 +99,12 @@ module.exports = yeoman.generators.Base.extend({
     this.template('README.md');
   },
 
-  git: function () {
+  git: function() {
     this.template('gitignore', '.gitignore');
     this.copy('gitattributes', '.gitattributes');
   },
 
-  bower: function () {
+  bower: function() {
     var bower = {
       name: this._.slugify(this.appname),
       private: true,
@@ -114,33 +113,33 @@ module.exports = yeoman.generators.Base.extend({
 
     if (this.includeBootstrap) {
       var bs = 'bootstrap' + (this.includeSass ? '-sass-official' : '');
-      bower.dependencies[bs] = "~3.2.0";
+      bower.dependencies[bs] = '~3.2.0';
     } else {
-      bower.dependencies.jquery = "~1.11.1";
+      bower.dependencies.jquery = '~1.11.1';
     }
 
     if (this.includeModernizr) {
-      bower.dependencies.modernizr = "~2.8.2";
+      bower.dependencies.modernizr = '~2.8.2';
     }
 
     this.copy('bowerrc', '.bowerrc');
     this.write('bower.json', JSON.stringify(bower, null, 2));
   },
 
-  jshint: function () {
+  jshint: function() {
     this.copy('jshintrc', '.jshintrc');
   },
 
-  editorConfig: function () {
+  editorConfig: function() {
     this.copy('editorconfig', '.editorconfig');
   },
 
-  mainStylesheet: function () {
+  mainStylesheet: function() {
     var css = 'main.' + (this.includeSass ? 's' : '') + 'css';
     this.template(css, 'app/styles/' + css);
   },
 
-  writeIndex: function () {
+  writeIndex: function() {
     this.indexFile = this.engine(
       this.readFileAsString(join(this.sourceRoot(), 'index.html')),
       this
@@ -181,7 +180,7 @@ module.exports = yeoman.generators.Base.extend({
     });
   },
 
-  app: function () {
+  app: function() {
     this.directory('app');
     this.mkdir('app/scripts');
     this.mkdir('app/styles');
@@ -204,8 +203,7 @@ module.exports = yeoman.generators.Base.extend({
       );
       this.write('app/scripts/debug.coffee', '');
       this.write('app/scripts/ie.coffee', '');
-    }
-    else {
+    } else {
       this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
       this.write('app/scripts/debug.js', '');
       this.write('app/scripts/ie.js', '');
@@ -246,8 +244,8 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
-  install: function () {
-    this.on('end', function () {
+  install: function() {
+    this.on('end', function() {
       this.invoke(this.options['test-framework'], {
         options: {
           'skip-message': this.options['skip-install-message'],
