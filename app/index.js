@@ -4,10 +4,14 @@ var join = require('path').join;
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var slugify = require('underscore.string/slugify');
 
 module.exports = yeoman.Base.extend({
   constructor: function() {
     yeoman.Base.apply(this, arguments);
+
+    this.argument('appname', {type: String, required: true});
+    this.appname = slugify(this.appname);
 
     this.option('skip-welcome-message', {
       desc: 'Skips the welcome message',
@@ -19,7 +23,6 @@ module.exports = yeoman.Base.extend({
       type: Boolean
     });
 
-    console.log('testLocal');
     var testLocal = require.resolve('generator-mocha/generators/app/index.js');
 
     this.composeWith('mocha:app', {
@@ -99,6 +102,7 @@ module.exports = yeoman.Base.extend({
         includeBootstrap: this.includeBootstrap,
         includeLibSass: this.includeLibSass,
         pkg: this.pkg,
+        appname: this.appname,
         // TODO: implement CoffeeScript into prompt (or remove completely)
         coffee: false
       };
@@ -115,16 +119,17 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('Gruntfile.js'),
         this.templateData
       );
-    }
+    },
 
-    /*packageJSON: function() {
+    packageJSON: function() {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
-        this.destinationPath('package.json')
+        this.destinationPath('package.json'),
+        this.templateData
       );
     },
 
-    readme: function() {
+    /*readme: function() {
       this.template('README.md');
     },
 
