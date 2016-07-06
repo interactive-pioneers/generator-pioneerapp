@@ -176,14 +176,18 @@ module.exports = yeoman.Base.extend({
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
       );
-    }
-
-    /*mainStylesheet: function() {
-      var css = 'main.' + (this.includeSass ? 's' : '') + 'css';
-      this.template(css, 'app/styles/' + css);
     },
 
-    writeIndex: function() {
+    stylesheet: function() {
+      var style = 'main.' + (this.includeSass ? 's' : '') + 'css';
+      this.fs.copyTpl(
+        this.templatePath(style),
+        this.destinationPath('app/styles/' + style),
+        this.templateData
+      );
+    }
+
+    /*writeIndex: function() {
       this.indexFile = this.engine(
         this.readFileAsString(join(this.sourceRoot(), 'index.html')),
         this
