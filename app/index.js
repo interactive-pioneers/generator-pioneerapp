@@ -149,27 +149,20 @@ module.exports = yeoman.Base.extend({
       );
     },
 
-    /*bower: function() {
-      var bower = {
-        name: this.appname,
-        private: true,
-        dependencies: {}
-      };
+    bower: function() {
+      this.fs.copyTpl(
+        this.templatePath('bower.json'),
+        this.destinationPath('bower.json'),
+        this.templateData
+      );
+    },
 
-      if (this.includeBootstrap) {
-        var bs = 'bootstrap' + (this.includeSass ? '-sass-official' : '');
-        bower.dependencies[bs] = '~3.2.0';
-      } else {
-        bower.dependencies.jquery = '~1.11.1';
-      }
-
-      if (this.includeModernizr) {
-        bower.dependencies.modernizr = '~2.8.2';
-      }
-
-      this.copy('bowerrc', '.bowerrc');
-      this.write('bower.json', JSON.stringify(bower, null, 2));
-    },*/
+    bowerrc: function() {
+      this.fs.copy(
+        this.templatePath('bowerrc'),
+        this.destinationPath('.bowerrc')
+      );
+    },
 
     jshint: function() {
       this.fs.copy(
