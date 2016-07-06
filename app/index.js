@@ -169,16 +169,16 @@ module.exports = yeoman.Base.extend({
         this.templatePath('jshintrc'),
         this.destinationPath('.jshintrc')
       );
-    }
+    },
 
-    /*editorConfig: function() {
+    editorConfig: function() {
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
       );
-    },
+    }
 
-    mainStylesheet: function() {
+    /*mainStylesheet: function() {
       var css = 'main.' + (this.includeSass ? 's' : '') + 'css';
       this.template(css, 'app/styles/' + css);
     },
