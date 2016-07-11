@@ -15,8 +15,8 @@ describe('Webapp generator', function() {
   describe('run test', function() {
 
     var expectedContent = [
-      ['bower.json', /"name": "tmp"/],
-      ['package.json', /"name": "tmp"/]
+      ['bower.json', /"name": "webapp"/],
+      ['package.json', /"name": "webapp"/]
     ];
     var expected = [
       '.editorconfig',
@@ -72,11 +72,11 @@ describe('Webapp generator', function() {
       runGen = helpers
         .run(path.join(__dirname, '../app'))
         .inDir(path.join(__dirname, '.tmp'))
-        .withArguments(['app'])
+        .withArguments(['webapp'])
         .withGenerators([[helpers.createDummyGenerator(), 'mocha:app']]);
     });
 
-    it.only('creates expected files', function(done) {
+    it('creates expected files', function(done) {
       runGen.withOptions(options).on('end', function() {
 
         assert.file([].concat(

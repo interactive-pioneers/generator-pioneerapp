@@ -6,6 +6,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var slugify = require('underscore.string/slugify');
 var ncp = require('ncp');
+var mkdirp = require('mkdirp');
 
 module.exports = yeoman.Base.extend({
   constructor: function() {
@@ -188,78 +189,92 @@ module.exports = yeoman.Base.extend({
       );
     },
 
-    /*writeIndex: function() {
-      this.indexFile = this.engine(
-        this.readFileAsString(join(this.sourceRoot(), 'index.html')),
-        this
-      );
+    html: function() {
+      var bsPath;
 
-      // wire Bootstrap plugins
-      if (this.includeBootstrap && !this.includeSass) {
-        var bs = 'bower_components/bootstrap/js/';
+      // path prefix for Bootstrap JS files
+      if (this.includeBootstrap) {
+        bsPath = '/bower_components/';
 
-        this.indexFile = this.appendFiles({
-          html: this.indexFile,
-          fileType: 'js',
-          optimizedPath: 'scripts/plugins.js',
-          sourceFileList: [
-            bs + 'affix.js',
-            bs + 'alert.js',
-            bs + 'dropdown.js',
-            bs + 'tooltip.js',
-            bs + 'modal.js',
-            bs + 'transition.js',
-            bs + 'button.js',
-            bs + 'popover.js',
-            bs + 'carousel.js',
-            bs + 'scrollspy.js',
-            bs + 'collapse.js',
-            bs + 'tab.js'
-          ],
-          searchPath: '.'
-        });
+        if (this.includeSass) {
+          bsPath += 'bootstrap-sass/assets/javascripts/bootstrap/';
+        } else {
+          bsPath += 'bootstrap/js/';
+        }
       }
 
-      this.indexFile = this.appendFiles({
-        html: this.indexFile,
-        fileType: 'js',
-        optimizedPath: 'scripts/main.js',
-        sourceFileList: ['scripts/main.js'],
-        searchPath: ['app', '.tmp']
-      });
-    },*/
+      this.fs.copyTpl(
+        this.templatePath('index.html'),
+        this.destinationPath('app/index.html'),
+        {
+          appname: this.appname,
+          includeBootstrap: this.includeBootstrap,
+          includeSass: this.includeSass,
+          includeModernizr: this.includeModernizr,
+          bsPath: bsPath,
+          bsPlugins: [
+            'affix',
+            'alert',
+            'dropdown',
+            'tooltip',
+            'modal',
+            'transition',
+            'button',
+            'popover',
+            'carousel',
+            'scrollspy',
+            'collapse',
+            'tab'
+          ]
+        }
+      );
+    },
 
     app: function() {
 
       ncp(this.templatePath('app'), this.destinationPath('app'));
 
-      //this.directory('app');
-      /*this.mkdir('app/scripts');
-      this.mkdir('app/styles');
-      this.mkdir('app/images/layout');
-      this.mkdir('app/images/style');
-      this.mkdir('app/images/temp');
-      this.mkdir('app/images/videos');
-      this.mkdir('app/fonts');
-      this.write('app/index.html', this.indexFile);
-      this.write('app/images/layout/.gitkeep', '');
-      this.write('app/images/style/.gitkeep', '');
-      this.write('app/images/temp/.gitkeep', '');
-      this.write('app/images/videos/.gitkeep', '');
-      this.write('app/fonts/.gitkeep', '');
+      mkdirp(this.destinationPath('app') + '/scripts');
+      mkdirp(this.destinationPath('app') + '/styles');
+      mkdirp(this.destinationPath('app') + '/images/layout');
+      mkdirp(this.destinationPath('app') + '/images/style');
+      mkdirp(this.destinationPath('app') + '/images/temp');
+      mkdirp(this.destinationPath('app') + '/images/videos');
+      mkdirp(this.destinationPath('app') + '/fonts');
 
-      this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
-      this.write('app/scripts/debug.js', '');
-      this.write('app/scripts/ie.js', '');
+      this.fs.write(this.destinationPath('app') + '/images/layout/.gitkeep', '');
+      this.fs.write(this.destinationPath('app') + '/images/style/.gitkeep', '');
+      this.fs.write(this.destinationPath('app') + '/images/temp/.gitkeep', '');
+      this.fs.write(this.destinationPath('app') + '/images/videos/.gitkeep', '');
+      this.fs.write(this.destinationPath('app') + '/fonts/.gitkeep', '');
+      this.fs.write(this.destinationPath('app') + '/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
+      this.fs.write(this.destinationPath('app') + '/scripts/debug.js', '');
+      this.fs.write(this.destinationPath('app') + '/scripts/ie.js', '');
 
       if (this.includeSass) {
-        this.mkdir('app/styles/base');
-        this.mkdir('app/styles/generic');
-        this.mkdir('app/styles/gui');
-        this.write('app/styles/gui/.gitkeep', '');
-        this.write('app/styles/generic/.gitkeep', '');
-        this.write('app/styles/base/.gitkeep', '');
-      }*/
+        mkdirp(this.destinationPath('app') + '/styles/base');
+        mkdirp(this.destinationPath('app') + '/styles/generic');
+        mkdirp(this.destinationPath('app') + '/styles/gui');
+
+        this.fs.write(this.destinationPath('app') + '/styles/gui/.gitkeep', '');
+        this.fs.write(this.destinationPath('app') + '/styles/generic/.gitkeep', '');
+        this.fs.write(this.destinationPath('app') + '/styles/base/.gitkeep', '');
+      }
+
+      this.fs.copy(
+        this.templatePath('app/apple-touch-icon.png'),
+        this.destinationPath('app/apple-touch-icon.png')
+      );
+
+      this.fs.copy(
+        this.templatePath('app/favicon.ico'),
+        this.destinationPath('app/favicon.ico')
+      );
+
+      this.fs.copy(
+        this.templatePath('app/robots.txt'),
+        this.destinationPath('app/robots.txt')
+      );
     },
 
     /*src: function() {
