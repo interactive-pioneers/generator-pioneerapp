@@ -348,8 +348,8 @@ module.exports = yeoman.Base.extend({
 
   install: function() {
     this.installDependencies({
-      skipMessage: false, //this.options['skip-install-message'],
-      skipInstall: false //this.options['skip-install']
+      skipMessage: this.options['skip-install-message'],
+      skipInstall: this.options['skip-install']
     });
   },
 
