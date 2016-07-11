@@ -5,7 +5,6 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var slugify = require('underscore.string/slugify');
-var ncp = require('ncp');
 var mkdirp = require('mkdirp');
 
 module.exports = yeoman.Base.extend({
@@ -231,8 +230,6 @@ module.exports = yeoman.Base.extend({
     },
 
     app: function() {
-
-      ncp(this.templatePath('app'), this.destinationPath('app'));
 
       mkdirp(this.destinationPath('app') + '/scripts');
       mkdirp(this.destinationPath('app') + '/styles');
