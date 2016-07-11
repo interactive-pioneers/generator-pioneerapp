@@ -277,30 +277,73 @@ module.exports = yeoman.Base.extend({
       );
     },
 
-    /*src: function() {
+    src: function() {
       if (this.includeAssemble || this.includeAssembleI18N) {
-        this.directory('src');
-        this.mkdir('src/data');
-        this.mkdir('src/templates/layouts');
-        this.mkdir('src/templates/pages');
-        this.mkdir('src/templates/partials');
+        mkdirp(this.destinationPath('src/data'));
+        mkdirp(this.destinationPath('src/templates/layouts'));
+        mkdirp(this.destinationPath('src/templates/pages'));
+        mkdirp(this.destinationPath('src/templates/partials'));
 
-        this.template('.src/data/config.yml', 'src/data/config.yml');
-        this.template('.src/templates/pages/index.hbs', 'src/templates/pages/index.hbs');
-        this.template('.src/templates/layouts/default.hbs', 'src/templates/layouts/default.hbs');
-        this.template('.src/templates/partials/header.hbs', 'src/templates/partials/header.hbs');
-        this.template('.src/templates/partials/footer.hbs', 'src/templates/partials/footer.hbs');
+        this.fs.copyTpl(
+          this.templatePath('.src/data/config.yml'),
+          this.destinationPath('src/data/config.yml'),
+          this.templateData
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('.src/templates/pages/index.hbs'),
+          this.destinationPath('src/templates/pages/index.hbs'),
+          this.templateData
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('.src/templates/layouts/default.hbs'),
+          this.destinationPath('src/templates/layouts/default.hbs'),
+          this.templateData
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('.src/templates/partials/header.hbs'),
+          this.destinationPath('src/templates/partials/header.hbs'),
+          this.templateData
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('.src/templates/partials/footer.hbs'),
+          this.destinationPath('src/templates/partials/footer.hbs'),
+          this.templateData
+        );
 
         if (this.includeAssembleI18N) {
-          this.mkdir('src/data/i18n');
-          this.template('.src/data/i18n/de_DE.yml', 'src/data/i18n/de_DE.yml');
-          this.template('.src/data/i18n/en_GB.yml', 'src/data/i18n/en_GB.yml');
-          this.template('.src/data/i18n/i18n.yml', 'src/data/i18n/i18n.yml');
-          this.mkdir('src/templates/pages/home');
-          this.template('.src/templates/pages/home/index.hbs', 'src/templates/pages/home/index.hbs');
+          mkdirp(this.destinationPath('src/data/i18n'));
+
+          this.fs.copyTpl(
+            this.templatePath('.src/data/i18n/de_DE.yml'),
+            this.destinationPath('src/data/i18n/de_DE.yml'),
+            this.templateData
+          );
+
+          this.fs.copyTpl(
+            this.templatePath('.src/data/i18n/en_GB.yml'),
+            this.destinationPath('src/data/i18n/en_GB.yml'),
+            this.templateData
+          );
+
+          this.fs.copyTpl(
+            this.templatePath('.src/data/i18n/i18n.yml'),
+            this.destinationPath('src/data/i18n/i18n.yml'),
+            this.templateData
+          );
+
+          mkdir(this.destinationPath('src/templates/pages/home'));
+          this.fs.copyTpl(
+            this.templatePath('.src/templates/pages/home/index.hbs'),
+            this.destinationPath('src/templates/pages/home/index.hbs'),
+            this.templateData
+          );
         }
       }
-    }*/
+    }
   },
 
   install: function() {
