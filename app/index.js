@@ -5,6 +5,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var slugify = require('underscore.string/slugify');
+var ncp = require('ncp');
 
 module.exports = yeoman.Base.extend({
   constructor: function() {
@@ -185,7 +186,7 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('app/styles/' + style),
         this.templateData
       );
-    }
+    },
 
     /*writeIndex: function() {
       this.indexFile = this.engine(
@@ -226,11 +227,14 @@ module.exports = yeoman.Base.extend({
         sourceFileList: ['scripts/main.js'],
         searchPath: ['app', '.tmp']
       });
-    },
+    },*/
 
     app: function() {
-      this.directory('app');
-      this.mkdir('app/scripts');
+
+      ncp(this.templatePath('app'), this.destinationPath('app'));
+
+      //this.directory('app');
+      /*this.mkdir('app/scripts');
       this.mkdir('app/styles');
       this.mkdir('app/images/layout');
       this.mkdir('app/images/style');
@@ -255,10 +259,10 @@ module.exports = yeoman.Base.extend({
         this.write('app/styles/gui/.gitkeep', '');
         this.write('app/styles/generic/.gitkeep', '');
         this.write('app/styles/base/.gitkeep', '');
-      }
+      }*/
     },
 
-    src: function() {
+    /*src: function() {
       if (this.includeAssemble || this.includeAssembleI18N) {
         this.directory('src');
         this.mkdir('src/data');

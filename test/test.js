@@ -76,7 +76,7 @@ describe('Webapp generator', function() {
         .withGenerators([[helpers.createDummyGenerator(), 'mocha:app']]);
     });
 
-    it('creates expected files', function(done) {
+    it.only('creates expected files', function(done) {
       runGen.withOptions(options).on('end', function() {
 
         assert.file([].concat(
