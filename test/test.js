@@ -72,6 +72,7 @@ describe('Webapp generator', function () {
       runGen = helpers
         .run(path.join(__dirname, '../app'))
         .inDir(path.join(__dirname, '.tmp'))
+        .withArguments(['app'])
         .withGenerators([[helpers.createDummyGenerator(), 'mocha:app']]);
     });
 
