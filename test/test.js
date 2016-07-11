@@ -143,7 +143,7 @@ describe('Webapp generator', function() {
     });
 
     it('creates expected modernizr components', function(done) {
-      runGen.withOptions(options).withPrompt({features: ['includeModernizr']})
+      runGen.withOptions(options).withPrompts({features: ['includeModernizr']})
       .on('end', function() {
 
         assert.fileContent([
@@ -158,7 +158,7 @@ describe('Webapp generator', function() {
     });
 
     it('creates expected bootstrap components', function(done) {
-      runGen.withOptions(options).withPrompt({features: ['includeBootstrap']})
+      runGen.withOptions(options).withPrompts({features: ['includeBootstrap']})
       .on('end', function() {
 
         assert.fileContent([
@@ -172,7 +172,7 @@ describe('Webapp generator', function() {
     });
 
     it('creates expected node SASS files', function(done) {
-      runGen.withOptions(options).withPrompt({
+      runGen.withOptions(options).withPrompts({
         features: ['includeSass'],
         libsass: true
       }).on('end', function() {
@@ -197,7 +197,7 @@ describe('Webapp generator', function() {
     });
 
     it('creates expected SASS and Bootstrap components', function(done) {
-      runGen.withOptions(options).withPrompt({
+      runGen.withOptions(options).withPrompts({
         features: ['includeSass', 'includeBootstrap']
       }).on('end', function() {
 
@@ -218,7 +218,7 @@ describe('Webapp generator', function() {
     });
 
     it('creates expected clean Assemble structure', function(done) {
-      runGen.withOptions(options).withPrompt({
+      runGen.withOptions(options).withPrompts({
         features: ['includeAssemble']
       }).on('end', function() {
 
@@ -244,7 +244,7 @@ describe('Webapp generator', function() {
     });
 
     it('creates expected i18n-capable Assemble structure', function(done) {
-      runGen.withOptions(options).withPrompt({
+      runGen.withOptions(options).withPrompts({
         features: ['includeAssemble', 'includeAssembleI18N']
       }).on('end', function() {
 
@@ -262,7 +262,7 @@ describe('Webapp generator', function() {
     });
 
     it('creates expected i18n-capable Assemble structure without Assemble selected', function(done) {
-      runGen.withOptions(options).withPrompt({
+      runGen.withOptions(options).withPrompts({
         features: ['includeAssembleI18N']
       }).on('end', function() {
 
@@ -276,7 +276,7 @@ describe('Webapp generator', function() {
 
     // TODO implement tests against wiredep
     /*it('wiredeps dependencies on Assemble', function (done) {
-      runGen.withOptions(options).withPrompt({
+      runGen.withOptions(options).withPrompts({
         features: ['includeAssemble']
       }).on('end', function () {
 
