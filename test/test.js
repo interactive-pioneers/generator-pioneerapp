@@ -6,13 +6,13 @@ var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
 var _ = require('underscore');
 
-describe('Webapp generator', function () {
+describe('Webapp generator', function() {
   // not testing the actual run of generators yet
-  it('the generator can be required without throwing', function () {
+  it('the generator can be required without throwing', function() {
     this.app = require('../app');
   });
 
-  describe('run test', function () {
+  describe('run test', function() {
 
     var expectedContent = [
       ['bower.json', /"name": "tmp"/],
@@ -68,7 +68,7 @@ describe('Webapp generator', function () {
 
     var runGen;
 
-    beforeEach(function () {
+    beforeEach(function() {
       runGen = helpers
         .run(path.join(__dirname, '../app'))
         .inDir(path.join(__dirname, '.tmp'))
@@ -76,8 +76,8 @@ describe('Webapp generator', function () {
         .withGenerators([[helpers.createDummyGenerator(), 'mocha:app']]);
     });
 
-    it('creates expected files', function (done) {
-      runGen.withOptions(options).on('end', function () {
+    it('creates expected files', function(done) {
+      runGen.withOptions(options).on('end', function() {
 
         assert.file([].concat(
           expected,
@@ -116,10 +116,10 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected CoffeeScript files', function (done) {
+    it('creates expected CoffeeScript files', function(done) {
       runGen.withOptions(
         _.extend(options, {coffee: true})
-      ).on('end', function () {
+      ).on('end', function() {
 
         assert.file([].concat(
           expected,
@@ -142,9 +142,9 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected modernizr components', function (done) {
+    it('creates expected modernizr components', function(done) {
       runGen.withOptions(options).withPrompt({features: ['includeModernizr']})
-      .on('end', function () {
+      .on('end', function() {
 
         assert.fileContent([
           ['Gruntfile.js', /modernizr/],
@@ -157,9 +157,9 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected bootstrap components', function (done) {
+    it('creates expected bootstrap components', function(done) {
       runGen.withOptions(options).withPrompt({features: ['includeBootstrap']})
-      .on('end', function () {
+      .on('end', function() {
 
         assert.fileContent([
           ['Gruntfile.js', /bootstrap/],
@@ -171,11 +171,11 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected node SASS files', function (done) {
+    it('creates expected node SASS files', function(done) {
       runGen.withOptions(options).withPrompt({
         features: ['includeSass'],
         libsass: true
-      }).on('end', function () {
+      }).on('end', function() {
 
         assert.file([
           'app/styles/base/.gitkeep',
@@ -196,10 +196,10 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected SASS and Bootstrap components', function (done) {
+    it('creates expected SASS and Bootstrap components', function(done) {
       runGen.withOptions(options).withPrompt({
         features: ['includeSass', 'includeBootstrap']
-      }).on('end', function () {
+      }).on('end', function() {
 
         assert.fileContent([
           ['Gruntfile.js', /bootstrap-sass-official/],
@@ -217,10 +217,10 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected clean Assemble structure', function (done) {
+    it('creates expected clean Assemble structure', function(done) {
       runGen.withOptions(options).withPrompt({
         features: ['includeAssemble']
-      }).on('end', function () {
+      }).on('end', function() {
 
         assert.file(assemble);
 
@@ -243,10 +243,10 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected i18n-capable Assemble structure', function (done) {
+    it('creates expected i18n-capable Assemble structure', function(done) {
       runGen.withOptions(options).withPrompt({
         features: ['includeAssemble', 'includeAssembleI18N']
-      }).on('end', function () {
+      }).on('end', function() {
 
         assert.file([].concat(assemble, assembleI18N));
 
@@ -261,10 +261,10 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected i18n-capable Assemble structure without Assemble selected', function (done) {
+    it('creates expected i18n-capable Assemble structure without Assemble selected', function(done) {
       runGen.withOptions(options).withPrompt({
         features: ['includeAssembleI18N']
-      }).on('end', function () {
+      }).on('end', function() {
 
         assert.file([].concat(assemble, assembleI18N));
 
@@ -275,20 +275,19 @@ describe('Webapp generator', function () {
     });
 
     // TODO implement tests against wiredep
+    /*it('wiredeps dependencies on Assemble', function (done) {
+      runGen.withOptions(options).withPrompt({
+        features: ['includeAssemble']
+      }).on('end', function () {
 
-    //it('wiredeps dependencies on Assemble', function (done) {
-      //runGen.withOptions(options).withPrompt({
-        //features: ['includeAssemble']
-      //}).on('end', function () {
 
+        assert.file([].concat(assemble, assembleI18N));
 
-        //assert.file([].concat(assemble, assembleI18N));
+        assert.fileContent(assembleI18NFileContent);
 
-        //assert.fileContent(assembleI18NFileContent);
-
-        //done();
-      //});
-    //});
+        done();
+      });
+    });*/
 
   });
 });
