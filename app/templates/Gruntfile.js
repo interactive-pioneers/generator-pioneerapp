@@ -450,7 +450,7 @@ module.exports = function (grunt) {
       <% // TODO implement default language into scaffold options %>
       index: {
         options: {
-          plugins: ['assemble-contrib-i18n', 'assemble-contrib-permalinks'],
+          plugins: ['assemble-contrib-i18n', 'assemble-middleware-permalinks'],
           i18n: {
             languages: ['de_DE'],
             language: 'de_DE',
