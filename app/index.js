@@ -343,7 +343,7 @@ module.exports = yeoman.Base.extend({
             this.templateData
           );
 
-          mkdir(this.destinationPath('src/templates/pages/home'));
+          mkdirp(this.destinationPath('src/templates/pages/home'));
           this.fs.copyTpl(
             this.templatePath('.src/templates/pages/home/index.hbs'),
             this.destinationPath('src/templates/pages/home/index.hbs'),
