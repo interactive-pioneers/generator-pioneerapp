@@ -5,41 +5,41 @@
   "license": "<Licence. See https://spdx.org/licenses/>",
   "repository": "<Repository URI here>",
   "devDependencies": {
-    "apache-server-configs": "^2.7.1",
-    "grunt": "^0.4.5",
-    "grunt-autoprefixer": "^1.0.0",
-    "grunt-concurrent": "^0.5.0",
-    "grunt-contrib-clean": "^0.6.0",<% if (coffee) { %>
-    "grunt-contrib-coffee": "^0.11.0",<% } %>
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-connect": "^0.8.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-htmlmin": "^0.3.0",
-    "grunt-contrib-imagemin": "^0.8.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^0.5.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha": "^0.4.10",<% if (includeModernizr) { %>
-    "grunt-modernizr": "^0.5.2",<% } %>
-    "grunt-newer": "^0.7.0",
+    "apache-server-configs": "^2.14.0",
+    "grunt": "^1.0.0",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-concurrent": "^2.3.0",
+    "grunt-contrib-clean": "^1.0.0",<% if (coffee) { %>
+    "grunt-contrib-coffee": "^1.0.0",<% } %>
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^1.4.0",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-mocha": "^1.0.2",<% if (includeModernizr) { %>
+    "grunt-modernizr": "^1.0.2",<% } %>
+    "grunt-newer": "^1.2.0",
     "grunt-rev": "^0.1.0",<% if (includeSass) { %>
-    "grunt-sass": "^0.14.0",<% } %>
-    "grunt-svgmin": "^0.4.0",
-    "grunt-usemin": "^2.3.0",
-    "grunt-wiredep": "^1.7.0",
-    "jshint-stylish": "^0.4.0",
-    "time-grunt": "^0.4.0",<% if (includeAssembleI18N) { %>
-    "assemble-contrib-i18n": "git+https://github.com/interactive-pioneers/assemble-contrib-i18n.git#unikeys-with-gc",<% } %>
+    "grunt-sass": "^1.2.0",<% } %>
+    "grunt-svgmin": "^3.3.0",
+    "grunt-usemin": "^3.1.1",
+    "grunt-wiredep": "^3.0.1",
+    "jshint-stylish": "^2.2.0",
+    "time-grunt": "^1.3.0",<% if (includeAssembleI18N) { %>
+    "assemble-contrib-i18n": "^0.1.6",<% } %>
     "grunt-pngcheck":  "^0.1.0",
-    "grunt-browser-sync": "^1.5.3",
+    "grunt-browser-sync": "^2.2.0",
     "grunt-html-validation": "^0.1.18",
-    "jit-grunt": "^0.8.0",<% if (includeAssemble) { %>
-    "assemble": "^0.4.42",
-    "assemble-contrib-permalinks": "git+https://github.com/assemble/assemble-middleware-permalinks.git#35eeca25d6fb3e3834f7407327face6e0e0eca68",<% } %>
-    "mocha-bamboo-reporter": "^1.0.5"
+    "jit-grunt": "^0.10.0",<% if (includeAssemble) { %>
+    "assemble": "^0.16.0",
+    "assemble-middleware-permalinks": "^0.5.2",<% } %>
+    "mocha-bamboo-reporter": "^1.1.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "^6.2.0"
   }
 }
