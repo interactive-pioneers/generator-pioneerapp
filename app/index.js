@@ -24,6 +24,11 @@ module.exports = yeoman.Base.extend({
       type: Boolean
     });
 
+    this.option('coffee', {
+      desc: 'Add CoffeeScript support',
+      type: Boolean
+    });
+
     var testLocal = require.resolve('generator-mocha/generators/app/index.js');
 
     this.composeWith('mocha:app', {
@@ -104,8 +109,7 @@ module.exports = yeoman.Base.extend({
         includeLibSass: this.includeLibSass,
         pkg: this.pkg,
         appname: this.appname,
-        // TODO: implement CoffeeScript into prompt (or remove completely)
-        coffee: false
+        coffee: this.options['coffee']
       };
 
       done();
@@ -244,9 +248,6 @@ module.exports = yeoman.Base.extend({
       this.fs.write(this.destinationPath('app') + '/images/temp/.gitkeep', '');
       this.fs.write(this.destinationPath('app') + '/images/videos/.gitkeep', '');
       this.fs.write(this.destinationPath('app') + '/fonts/.gitkeep', '');
-      this.fs.write(this.destinationPath('app') + '/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
-      this.fs.write(this.destinationPath('app') + '/scripts/debug.js', '');
-      this.fs.write(this.destinationPath('app') + '/scripts/ie.js', '');
 
       if (this.includeSass) {
         mkdirp(this.destinationPath('app') + '/styles/base');
@@ -256,6 +257,16 @@ module.exports = yeoman.Base.extend({
         this.fs.write(this.destinationPath('app') + '/styles/gui/.gitkeep', '');
         this.fs.write(this.destinationPath('app') + '/styles/generic/.gitkeep', '');
         this.fs.write(this.destinationPath('app') + '/styles/base/.gitkeep', '');
+      }
+
+      if (this.options['coffee']) {
+        this.fs.write(this.destinationPath('app/scripts/main.coffee'), 'console.log "\'Allo from CoffeeScript!"');
+        this.fs.write(this.destinationPath('app/scripts/debug.coffee'), '');
+        this.fs.write(this.destinationPath('app/scripts/ie.coffee'), '');
+      } else {
+        this.fs.write(this.destinationPath('app') + '/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
+        this.fs.write(this.destinationPath('app') + '/scripts/debug.js', '');
+        this.fs.write(this.destinationPath('app') + '/scripts/ie.js', '');
       }
 
       this.fs.copy(
