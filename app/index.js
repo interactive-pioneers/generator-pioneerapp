@@ -77,6 +77,14 @@ module.exports = yeoman.Base.extend({
         name: 'Bootstrap',
         value: 'includeBootstrap',
         checked: false
+      }, {
+        type: 'confirm',
+        name: 'includeJQuery',
+        message: 'Would you like to include jQuery?',
+        default: true,
+        when: function(answers) {
+          return answers.features.indexOf('includeBootstrap') === -1;
+        }
       }]
     }];
 
@@ -93,6 +101,7 @@ module.exports = yeoman.Base.extend({
       this.includeModernizr = hasFeature('includeModernizr');
       this.includeAssemble = hasFeature('includeAssemble');
       this.includeAssembleI18N = hasFeature('includeAssembleI18N');
+      this.includeJQuery = answers.includeJQuery;
 
       if (this.includeAssembleI18N) {
         this.includeAssemble = true;
@@ -107,6 +116,7 @@ module.exports = yeoman.Base.extend({
         includeAssembleI18N: this.includeAssembleI18N,
         includeBootstrap: this.includeBootstrap,
         includeLibSass: this.includeLibSass,
+        includeJQuery: this.includeJQuery,
         pkg: this.pkg,
         appname: this.appname,
         coffee: this.options['coffee']
@@ -155,14 +165,47 @@ module.exports = yeoman.Base.extend({
     },
 
     bower: function() {
-      this.fs.copyTpl(
-        this.templatePath('bower.json'),
-        this.destinationPath('bower.json'),
-        this.templateData
-      );
-    },
+      var bowerJson = {
+        name: slugify(this.appname),
+        private: true,
+        dependencies: {}
+      };
 
-    bowerrc: function() {
+      if (this.includeBootstrap) {
+        if (this.includeSass) {
+          bowerJson.dependencies['bootstrap-sass'] = '~3.3.5';
+          bowerJson.overrides = {
+            'bootstrap-sass': {
+              'main': [
+                'assets/stylesheets/_bootstrap.scss',
+                'assets/fonts/bootstrap/*',
+                'assets/javascripts/bootstrap.js'
+              ]
+            }
+          };
+        } else {
+          bowerJson.dependencies['bootstrap'] = '~3.3.5';
+          bowerJson.overrides = {
+            'bootstrap': {
+              'main': [
+                'less/bootstrap.less',
+                'dist/css/bootstrap.css',
+                'dist/js/bootstrap.js',
+                'dist/fonts/*'
+              ]
+            }
+          };
+        }
+      } else if (this.includeJQuery) {
+        bowerJson.dependencies['jquery'] = '~2.2.4';
+      }
+
+      if (this.includeModernizr) {
+        bowerJson.dependencies['modernizr'] = '~2.8.1';
+      }
+
+      this.fs.writeJSON(this.destinationPath('bower.json'), bowerJson);
+
       this.fs.copy(
         this.templatePath('bowerrc'),
         this.destinationPath('.bowerrc')
