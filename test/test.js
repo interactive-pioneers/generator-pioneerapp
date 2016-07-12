@@ -50,13 +50,13 @@ describe('Webapp generator', function() {
       'src/templates/pages/home/index.hbs'
     ];
     var assembleI18NFileContent = [
-      ['Gruntfile.js', /assemble-contrib-i18n/],
+      ['Gruntfile.js', /grunt-assemble-i18n/],
       ['Gruntfile.js', /assemble-middleware-permalinks/],
       ['Gruntfile.js', /templateRoot:/],
       ['src/templates/pages/index.hbs', /{{{i18n "content"}}}/],
       ['package.json', /"assemble":/],
       ['package.json', /"assemble-middleware-permalinks":/],
-      ['package.json', /"assemble-contrib-i18n":/]
+      ['package.json', /"grunt-assemble-i18n":/]
     ];
 
     var options = {
@@ -210,7 +210,7 @@ describe('Webapp generator', function() {
         assert.noFileContent([
           ['package.json', /"assemble":/],
           ['package.json', /"assemble-middleware-permalinks":/],
-          ['package.json', /"assemble-contrib-i18n":/]
+          ['package.json', /"grunt-assemble-i18n":/]
         ]);
 
         done();
@@ -236,7 +236,7 @@ describe('Webapp generator', function() {
         ]);
 
         assert.noFileContent([
-          ['package.json', /"assemble-contrib-i18n":/]
+          ['package.json', /"grunt-assemble-i18n":/]
         ]);
 
         done();
