@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{meta.lang}}">
+<html<% if (includeModernizr) { %> class="no-js"<% } %> lang="{{meta.lang}}">
   <head>
     <title>{{title}}</title>
     <meta charset="UTF-8">
@@ -21,6 +21,7 @@
     <link rel="canonical" href="<Site URI>{{meta.canonical}}" />
     <link rel="shortcut icon" href="{{assets}}favicon.ico" type="image/x-icon">
     <!-- build:css(.tmp) {{assets}}{{config.path.styles}}main.css -->
+    <% if (includeBootstrap && !includeSass) { %><link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"><% } %>
     <link rel="stylesheet" href="{{assets}}{{config.path.styles}}main.css" type="text/css" media="all">
     <!-- endbuild -->
     <script src="{{assets}}{{config.path.scripts}}vendor/modernizr.js"></script>
@@ -43,6 +44,13 @@
     <script src="{{assets}}{{config.path.bower}}jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <% if (includeBootstrap) { %>
+    <!-- build:js scripts/plugins.js -->
+<% bsPlugins.forEach(function (plugin) { -%>
+    <script src="<%= bsPath + plugin %>.js"></script>
+<% }) -%>
+    <!-- endbuild -->
+    <% } %>
     <!-- build:js {{assets}}{{config.path.script}}main.js -->
     <script type="text/javascript" src="{{assets}}{{config.path.script}}main.js"></script>
     <!-- endbuild -->
