@@ -16,8 +16,7 @@ module.exports = function (grunt) {
   // Load grunt tasks automatically
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
-    browserSync: 'grunt-browser-sync',
-    validation: 'grunt-html-validation'
+    browserSync: 'grunt-browser-sync'
   });
 
   // Configurable paths
@@ -534,18 +533,6 @@ module.exports = function (grunt) {
       }
     },
 
-    validation: {
-      options: {
-        reset: grunt.option('reset') || true
-      },
-      files: {
-        src: [
-          '<%%= config.app %>/**/*.html',
-          '!<%%= config.app %>/bower_components/{,**/}*.html'
-        ]
-      }
-    },
-
     pngcheck: {
       files: {
         src: ['<%%= config.app %>/images/{,**/}*.png']
@@ -593,19 +580,8 @@ module.exports = function (grunt) {
     ]);
   });
 
-  /**
-   * QA task.
-   * Run with --full for full QA incl. HTML validation, e.g.:
-   * grunt qa --full
-   * TODO: push selective parts into standard QA
-   *  so that it fails the build on obvious errors.
-   */
   grunt.registerTask('qa', function() {
-    var tasks = ['concurrent:qa'];
-    if (grunt.option('full')) {
-      tasks.push('validation');
-    }
-    grunt.task.run(tasks);
+    grunt.task.run(['concurrent:qa']);
   });
 
   grunt.registerTask('build', [

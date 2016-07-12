@@ -33,7 +33,6 @@
     "assemble-contrib-i18n": "^0.1.6",<% } %>
     "grunt-pngcheck":  "^0.1.0",
     "grunt-browser-sync": "^2.2.0",
-    "grunt-html-validation": "^0.1.18",
     "jit-grunt": "^0.10.0",<% if (includeAssemble) { %>
     "assemble": "^0.16.0",
     "assemble-middleware-permalinks": "^0.5.2",<% } %>
