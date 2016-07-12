@@ -26,11 +26,21 @@
     "yeoman-generator",
     "web",
     "app",
-    "front-end",
+    "webapp",
+    "frontend",
+    "html5",
     "h5bp",
     "modernizr",
+    "javascript",
+    "coffeescript",
     "jquery",
-    "grunt"
+    "grunt",
+    "assemble",
+    "i18n",
+    "bootstrap",
+    "mocha",
+    "grunt",
+    "sass"
   ],
   "dependencies": {
     "chalk": "^1.1.3",
