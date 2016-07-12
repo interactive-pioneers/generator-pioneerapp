@@ -24,6 +24,7 @@ module.exports = function (grunt) {
     app: 'app',
     dist: 'dist',
     src: 'src',
+    test: 'test',
     pkg: grunt.file.readJSON('package.json')
   };
 
@@ -44,7 +45,7 @@ module.exports = function (grunt) {
         tasks: ['coffee:dist']
       },
       coffeeTest: {
-        files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
+        files: ['<%%= config.test %>/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['coffee:test', 'test:watch']
       },<% } else { %>
       js: {
@@ -55,7 +56,7 @@ module.exports = function (grunt) {
         }
       },
       jstest: {
-        files: ['test/spec/{,*/}*.js'],
+        files: ['<%%= config.test %>/spec/{,*/}*.js'],
         tasks: ['mocha:reportless']
       },<% } %>
       gruntfile: {
@@ -166,7 +167,7 @@ module.exports = function (grunt) {
         'Gruntfile.js',
         '<%%= config.app %>/scripts/{,*/}*.js',
         '!<%%= config.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
+        '<%%= config.test %>/spec/{,*/}*.js'
       ]
     },
 
@@ -179,14 +180,14 @@ module.exports = function (grunt) {
           run: true,
           reporter: './node_modules/mocha-bamboo-reporter'
         },
-        src: ['test/*.html']
+        src: ['<%%= config.test %>/*.html']
       },
       reportless: {
         options: {
           run: true,
           log: true
         },
-        src: ['test/*.html']
+        src: ['<%%= config.test %>/*.html']
       },
     },<% if (coffee) { %>
 
@@ -204,7 +205,7 @@ module.exports = function (grunt) {
       test: {
         files: [{
           expand: true,
-          cwd: 'test/spec',
+          cwd: '<%%= config.test %>/spec',
           src: '{,*/}*.{coffee,litcoffee,coffee.md}',
           dest: '.tmp/spec',
           ext: '.js'
