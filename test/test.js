@@ -108,9 +108,9 @@ describe('Webapp generator', function() {
           ['.gitignore', /\.sass-cache/],
           ['package.json', /grunt-contrib-sass/],
           ['package.json', /grunt-sass/],
-          ['Gruntfile.js', /bootstrap-sass-official/],
+          ['Gruntfile.js', /bootstrap-sass/],
           ['app/index.html', /Sass is a mature/],
-          ['bower.json', /bootstrap-sass-official/]
+          ['bower.json', /bootstrap-sass/]
         ]);
         done();
       });
@@ -189,7 +189,7 @@ describe('Webapp generator', function() {
 
         assert.noFileContent([
           ['package.json', /grunt-contrib-sass/],
-          ['Gruntfile.js', /bootstrap-sass-official/]
+          ['Gruntfile.js', /bootstrap-sass/]
         ]);
 
         done();
@@ -202,9 +202,9 @@ describe('Webapp generator', function() {
       }).on('end', function() {
 
         assert.fileContent([
-          ['Gruntfile.js', /bootstrap-sass-official/],
+          ['Gruntfile.js', /bootstrap-sass/],
           ['app/index.html', /Sass is a mature/],
-          ['bower.json', /bootstrap-sass-official/]
+          ['bower.json', /bootstrap-sass/]
         ]);
 
         assert.noFileContent([
