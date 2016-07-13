@@ -24,7 +24,7 @@ describe('Assemble feature', function() {
 
     it('should add dependencies', function() {
       assert.fileContent('package.json', '"assemble"');
-      assert.fileContent('package.json', '"assemble-permalinks"');
+      assert.fileContent('package.json', '"assemble-middleware-permalinks"');
     });
 
     it('should create Handlebars templates', function() {
@@ -46,7 +46,7 @@ describe('Assemble feature', function() {
 
     it('shouldn\'t add dependencies', function() {
       assert.noFileContent('package.json', '"assemble"');
-      assert.noFileContent('package.json', '"assemble-permalinks"');
+      assert.noFileContent('package.json', '"assemble-middleware-permalinks"');
     });
 
     it('shouldn\'t create Handlebars templates', function() {
