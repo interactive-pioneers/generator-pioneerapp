@@ -69,7 +69,7 @@ describe('Grunt tasks', function() {
     });
 
     it('should include permalinks configuration', function() {
-      assert.fileContent('Gruntfile.js', 'assemble-middleware-permalinks');
+      assert.fileContent('Gruntfile.js', 'assemble-permalinks');
     });
 
     it('shouldn\'t include i18n configuration', function() {

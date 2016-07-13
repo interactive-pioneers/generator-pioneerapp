@@ -465,7 +465,7 @@ module.exports = function (grunt) {
       <% // TODO implement default language into scaffold options %>
       index: {
         options: {
-          plugins: ['grunt-assemble-i18n', 'assemble-middleware-permalinks'],
+          plugins: ['grunt-assemble-i18n', 'assemble-permalinks'],
           i18n: {
             languages: ['de_DE'],
             language: 'de_DE',
@@ -483,7 +483,7 @@ module.exports = function (grunt) {
         options: {
           plugins: [<% if (includeAssembleI18N) { %>
             'grunt-assemble-i18n', <% } %>
-            'assemble-middleware-permalinks'
+            'assemble-permalinks'
           ],
           permalinks: {
             structure: ':language/:section/:slug:ext'
