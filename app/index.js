@@ -324,6 +324,11 @@ module.exports = yeoman.Base.extend({
         this.fs.write(this.destinationPath('app') + '/styles/gui/.gitkeep', '');
         this.fs.write(this.destinationPath('app') + '/styles/generic/.gitkeep', '');
         this.fs.write(this.destinationPath('app') + '/styles/base/.gitkeep', '');
+
+        this.fs.copy(
+          this.templatePath('.scss-lint.yml'),
+          this.destinationPath('.scss-lint.yml')
+        );
       }
 
       if (this.options['coffee']) {
@@ -426,6 +431,10 @@ module.exports = yeoman.Base.extend({
       skipMessage: this.options['skip-install-message'],
       skipInstall: this.options['skip-install']
     });
+    if (this.includeSass) {
+      var gempath = require.resolve('grunt-scss-lint/Gemfile');
+      this.spawnCommand('bundle', ['install', '--gemfile=' + gempath]);
+    }
   },
 
   end: function() {

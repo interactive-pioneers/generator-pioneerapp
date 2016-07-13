@@ -123,9 +123,10 @@ describe('Grunt tasks', function() {
         .on('end', done);
     });
 
-    it('should include subtask', function() {
+    it('should include subtasks', function() {
       [
-        'sass'
+        'sass',
+        'scsslint'
       ].forEach(function(task) {
         assert.fileContent('Gruntfile.js', task + ': ');
       });
