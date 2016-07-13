@@ -51,7 +51,8 @@
     "underscore.string": "^3.3.4",
     "wiredep": "^2.2.2",
     "yeoman-assert": "^2.1.1",
-    "generator-mocha": "^0.3.0"
+    "generator-mocha": "^0.3.0",
+    "grunt-scss-lint": "^0.3.8"
   },
   "devDependencies": {
     "mocha": "^2.5.3",
