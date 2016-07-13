@@ -115,4 +115,21 @@ describe('Grunt tasks', function() {
     });
   });
 
+  context('with Sass feature', function() {
+    before(function(done) {
+      helpers.run(path.join(__dirname, '../app'))
+        .withArguments(['webapp'])
+        .withPrompts({features: ['includeSass']})
+        .on('end', done);
+    });
+
+    it('should include subtask', function() {
+      [
+        'sass'
+      ].forEach(function(task) {
+        assert.fileContent('Gruntfile.js', task + ': ');
+      });
+    });
+  });
+
 });
