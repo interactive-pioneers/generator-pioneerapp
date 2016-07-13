@@ -36,7 +36,8 @@
     "jit-grunt": "^0.10.0",<% if (includeAssemble) { %>
     "assemble": "^0.16.0",
     "assemble-middleware-permalinks": "^0.5.2",<% } %>
-    "mocha-bamboo-reporter": "^1.1.0"
+    "mocha-bamboo-reporter": "^1.1.0",
+    "grunt-jscs": "^3.0.1"
   },
   "engines": {
     "node": "^6.2.0"

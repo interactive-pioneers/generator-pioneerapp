@@ -18,11 +18,11 @@ describe('Webapp generator', function() {
       ['bower.json', /"name": "webapp"/],
       ['package.json', /"name": "webapp"/],
       ['.tern-project', /"libs": \[/]
-      //['.tern-project', /"jquery"/]
     ];
     var expected = [
       '.editorconfig',
       '.tern-project',
+      '.jscsrc',
       '.gitignore',
       '.gitattributes',
       'package.json',

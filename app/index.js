@@ -219,6 +219,13 @@ module.exports = yeoman.Base.extend({
       );
     },
 
+    jscs: function() {
+      this.fs.copy(
+        this.templatePath('.jscsrc'),
+        this.destinationPath('.jscsrc')
+      );
+    },
+
     editor: function() {
       this.fs.copy(
         this.templatePath('editorconfig'),

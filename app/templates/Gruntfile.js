@@ -171,9 +171,23 @@ module.exports = function (grunt) {
       ]
     },
 
-    // Mocha testing framework configuration options
-    <% // TODO optimise
-    // TODO finalise mocha generation so that it would safely fall through %>
+    jscs: {
+      src: [
+        'Gruntfile.js',
+        '<%%= config.app %>/scripts/{,*/}*.js',
+        '!<%%= config.app %>/scripts/vendor/*',
+        '<%%= config.test %>/spec/{,*/}*.js'
+      ],
+      options: {
+        config: '.jscsrc'
+        verbose: true
+      }
+    },
+
+    <%
+      // TODO: optimise
+      // TODO: finalise mocha generation so that it would safely fall through
+    %>
     mocha: {
       all: {
         options: {
@@ -517,6 +531,7 @@ module.exports = function (grunt) {
       ],
       qa: [
         'jshint',
+        'jscs',
         <% // TODO finalise mocha generation so that it would safely fall through %>
         //'mocha',
         'pngcheck'
