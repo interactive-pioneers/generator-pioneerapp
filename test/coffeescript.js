@@ -5,10 +5,16 @@ var assert = require('yeoman-assert');
 
 describe('CofeeScript feature', function() {
 
-  var files = [
+  var coffeescripts = [
     'app/scripts/main.coffee',
     'app/scripts/debug.coffee',
     'app/scripts/ie.coffee'
+  ];
+
+  var javascripts = [
+    'app/scripts/main.js',
+    'app/scripts/ie.js',
+    'app/scripts/debug.js'
   ];
 
   describe('on', function() {
@@ -25,7 +31,11 @@ describe('CofeeScript feature', function() {
     });
 
     it('should create CoffeeScript files', function() {
-      assert.file(files);
+      assert.file(coffeescripts);
+    });
+
+    it('shouldn\'t create JavaScript files', function() {
+      assert.noFile(javascripts);
     });
   });
 
@@ -42,7 +52,11 @@ describe('CofeeScript feature', function() {
     });
 
     it('shouldn\'t create CoffeeScript files', function() {
-      assert.noFile(files);
+      assert.noFile(coffeescripts);
+    });
+
+    it('should create JavaScript files', function() {
+      assert.file(javascripts);
     });
   });
 });
