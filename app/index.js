@@ -101,7 +101,7 @@ module.exports = yeoman.Base.extend({
       this.includeModernizr = hasFeature('includeModernizr');
       this.includeAssemble = hasFeature('includeAssemble');
       this.includeAssembleI18N = hasFeature('includeAssembleI18N');
-      this.includeJQuery = answers.includeJQuery;
+      this.includeJQuery = hasFeature('includeJQuery');
 
       if (this.includeAssembleI18N) {
         this.includeAssemble = true;
@@ -219,11 +219,27 @@ module.exports = yeoman.Base.extend({
       );
     },
 
-    editorConfig: function() {
+    editor: function() {
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
       );
+
+      var ternJson = {
+        libs: [
+          'browser',
+          'underscrore'
+        ],
+        plugins: {
+          node: {}
+        }
+      };
+
+      if (this.includeJQuery) {
+        ternJson.libs.push('jquery');
+      }
+
+      this.fs.writeJSON(this.destinationPath('.tern-project'), ternJson);
     },
 
     stylesheet: function() {

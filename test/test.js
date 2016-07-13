@@ -16,10 +16,13 @@ describe('Webapp generator', function() {
 
     var expectedContent = [
       ['bower.json', /"name": "webapp"/],
-      ['package.json', /"name": "webapp"/]
+      ['package.json', /"name": "webapp"/],
+      ['.tern-project', /"libs": \[/]
+      //['.tern-project', /"jquery"/]
     ];
     var expected = [
       '.editorconfig',
+      '.tern-project',
       '.gitignore',
       '.gitattributes',
       'package.json',
@@ -111,6 +114,26 @@ describe('Webapp generator', function() {
           ['Gruntfile.js', /bootstrap-sass/],
           ['app/index.html', /Sass is a mature/],
           ['bower.json', /bootstrap-sass/]
+        ]);
+        done();
+      });
+    });
+
+    it('creates expected jQuery-related content', function(done) {
+      runGen.withPrompts(
+        {features: ['includeJQuery']}
+      ).on('end', function() {
+        assert.fileContent([
+          ['.tern-project', /"jquery"/]
+        ]);
+        done();
+      });
+    });
+
+    it('creates no jQuery-related content', function(done) {
+      runGen.on('end', function() {
+        assert.noFileContent([
+          ['.tern-project', /"jquery"/]
         ]);
         done();
       });
