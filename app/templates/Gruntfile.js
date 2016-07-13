@@ -8,7 +8,7 @@
 // If you want to recursively match all subfolders, use:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -179,16 +179,18 @@ module.exports = function (grunt) {
         '<%%= config.test %>/spec/{,*/}*.js'
       ],
       options: {
-        config: '.jscsrc'
+        config: '.jscsrc',
         verbose: true
       }
     },
 
     <%
-      // TODO: optimise
-      // TODO: finalise mocha generation so that it would safely fall through
-    %>
-    mocha: {
+    /*
+     * TODO:
+     * - optimise
+     * - finalise mocha generation so that it would safely fall through
+     */
+    %>mocha: {
       all: {
         options: {
           run: true,
@@ -205,7 +207,6 @@ module.exports = function (grunt) {
       },
     },<% if (coffee) { %>
 
-    // Compiles CoffeeScript to JavaScript
     coffee: {
       dist: {
         files: [{
@@ -227,7 +228,6 @@ module.exports = function (grunt) {
       }
     },<% } %><% if (includeSass) { %>
 
-    // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {<% if (includeLibSass) { %>
         sourceMap: true,
@@ -255,7 +255,6 @@ module.exports = function (grunt) {
       }
     },<% } %>
 
-    // Add vendor prefixed styles
     autoprefixer: {
       options: {
         browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
@@ -532,7 +531,7 @@ module.exports = function (grunt) {
       qa: [
         'jshint',
         'jscs',
-        <% // TODO finalise mocha generation so that it would safely fall through %>
+        <% // TODO: finalise mocha generation so that it would safely fall through %>
         //'mocha',
         'pngcheck'
       ]
@@ -556,8 +555,7 @@ module.exports = function (grunt) {
     }
   });
 
-
-  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
+  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function(target) {
     if (grunt.option('allow-remote')) {
       grunt.config.set('connect.options.hostname', '0.0.0.0');
     }
@@ -576,12 +574,12 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', function (target) {
+  grunt.registerTask('server', function(target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run([target ? ('serve:' + target) : 'serve']);
   });
 
-  grunt.registerTask('test', function (target) {
+  grunt.registerTask('test', function(target) {
     if (target !== 'watch') {
       grunt.task.run([
         'clean:server',
