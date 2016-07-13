@@ -77,15 +77,15 @@ module.exports = yeoman.Base.extend({
         name: 'Bootstrap',
         value: 'includeBootstrap',
         checked: false
-      }, {
-        type: 'confirm',
-        name: 'includeJQuery',
-        message: 'Would you like to include jQuery?',
-        default: true,
-        when: function(answers) {
-          return answers.features.indexOf('includeBootstrap') === -1;
-        }
       }]
+    }, {
+      type: 'confirm',
+      name: 'includeJQuery',
+      message: 'Would you like to include jQuery?',
+      default: true,
+      when: function(answers) {
+        return answers.features.indexOf('includeBootstrap') === -1;
+      }
     }];
 
     this.prompt(prompts).then(function(answers) {
@@ -101,7 +101,7 @@ module.exports = yeoman.Base.extend({
       this.includeModernizr = hasFeature('includeModernizr');
       this.includeAssemble = hasFeature('includeAssemble');
       this.includeAssembleI18N = hasFeature('includeAssembleI18N');
-      this.includeJQuery = hasFeature('includeJQuery');
+      this.includeJQuery = answers.includeJQuery;
 
       if (this.includeAssembleI18N) {
         this.includeAssemble = true;

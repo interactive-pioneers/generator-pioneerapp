@@ -6,7 +6,7 @@ var helpers = require('yeoman-test');
 var assert = require('yeoman-assert');
 var _ = require('underscore');
 
-describe('Webapp generator', function() {
+xdescribe('Webapp generator', function() {
   // not testing the actual run of generators yet
   it('the generator can be required without throwing', function() {
     this.app = require('../app');
@@ -114,28 +114,6 @@ describe('Webapp generator', function() {
           ['Gruntfile.js', /bootstrap-sass/],
           ['app/index.html', /Sass is a mature/],
           ['bower.json', /bootstrap-sass/]
-        ]);
-        done();
-      });
-    });
-
-    it('creates expected jQuery-related content', function(done) {
-      runGen.withPrompts(
-        {features: ['includeJQuery']}
-      ).on('end', function() {
-        assert.fileContent([
-          ['.tern-project', /"jquery"/],
-          ['bower.json', /jquery/]
-        ]);
-        done();
-      });
-    });
-
-    it('creates no jQuery-related content', function(done) {
-      runGen.on('end', function() {
-        assert.noFileContent([
-          ['.tern-project', /"jquery"/],
-          ['bower.json', /jquery/]
         ]);
         done();
       });
