@@ -138,7 +138,7 @@ module.exports = yeoman.Base.extend({
 
     packageJSON: function() {
       this.fs.copyTpl(
-        this.templatePath('_package.json'),
+        this.templatePath('package.json'),
         this.destinationPath('package.json'),
         this.templateData
       );
@@ -154,12 +154,12 @@ module.exports = yeoman.Base.extend({
 
     git: function() {
       this.fs.copyTpl(
-        this.templatePath('gitignore'),
+        this.templatePath('_gitignore'),
         this.destinationPath('.gitignore'),
         this.templateData
       );
       this.fs.copy(
-        this.templatePath('gitattributes'),
+        this.templatePath('_gitattributes'),
         this.destinationPath('.gitattributes')
       );
     },
@@ -207,14 +207,14 @@ module.exports = yeoman.Base.extend({
       this.fs.writeJSON(this.destinationPath('bower.json'), bowerJson);
 
       this.fs.copy(
-        this.templatePath('bowerrc'),
+        this.templatePath('.bowerrc'),
         this.destinationPath('.bowerrc')
       );
     },
 
     jshint: function() {
       this.fs.copy(
-        this.templatePath('jshintrc'),
+        this.templatePath('.jshintrc'),
         this.destinationPath('.jshintrc')
       );
     },
@@ -228,7 +228,7 @@ module.exports = yeoman.Base.extend({
 
     editor: function() {
       this.fs.copy(
-        this.templatePath('editorconfig'),
+        this.templatePath('.editorconfig'),
         this.destinationPath('.editorconfig')
       );
 
