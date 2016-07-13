@@ -97,4 +97,22 @@ describe('Grunt tasks', function() {
       assert.fileContent('Gruntfile.js', 'grunt-assemble-i18n');
     });
   });
+
+  context('with Modernizr feature', function() {
+    before(function(done) {
+      helpers.run(path.join(__dirname, '../app'))
+        .withArguments(['webapp'])
+        .withPrompts({features: ['includeModernizr']})
+        .on('end', done);
+    });
+
+    it('should include subtask', function() {
+      [
+        'modernizr'
+      ].forEach(function(task) {
+        assert.fileContent('Gruntfile.js', task + ': ');
+      });
+    });
+  });
+
 });
