@@ -124,7 +124,8 @@ describe('Webapp generator', function() {
         {features: ['includeJQuery']}
       ).on('end', function() {
         assert.fileContent([
-          ['.tern-project', /"jquery"/]
+          ['.tern-project', /"jquery"/],
+          ['bower.json', /jquery/]
         ]);
         done();
       });
@@ -133,7 +134,8 @@ describe('Webapp generator', function() {
     it('creates no jQuery-related content', function(done) {
       runGen.on('end', function() {
         assert.noFileContent([
-          ['.tern-project', /"jquery"/]
+          ['.tern-project', /"jquery"/],
+          ['bower.json', /jquery/]
         ]);
         done();
       });
