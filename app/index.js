@@ -61,10 +61,6 @@ module.exports = yeoman.Base.extend({
         name: 'Sass',
         value: 'includeSass',
         checked: true
-      },{
-        name: 'Modernizr',
-        value: 'includeModernizr',
-        checked: true
       }, {
         name: 'Assemble',
         value: 'includeAssemble',
@@ -77,6 +73,10 @@ module.exports = yeoman.Base.extend({
       }, {
         name: 'Bootstrap',
         value: 'includeBootstrap',
+        checked: false
+      }, {
+        name: 'Modernizr',
+        value: 'includeModernizr',
         checked: false
       }]
     }, {
