@@ -302,28 +302,28 @@ module.exports = yeoman.Base.extend({
 
     app: function() {
 
-      mkdirp(this.destinationPath('app') + '/scripts');
-      mkdirp(this.destinationPath('app') + '/styles');
-      mkdirp(this.destinationPath('app') + '/images/layout');
-      mkdirp(this.destinationPath('app') + '/images/style');
-      mkdirp(this.destinationPath('app') + '/images/temp');
-      mkdirp(this.destinationPath('app') + '/images/videos');
-      mkdirp(this.destinationPath('app') + '/fonts');
+      mkdirp(this.destinationPath('app/scripts'));
+      mkdirp(this.destinationPath('app/styles'));
+      mkdirp(this.destinationPath('app/images/layout'));
+      mkdirp(this.destinationPath('app/images/style'));
+      mkdirp(this.destinationPath('app/images/temp'));
+      mkdirp(this.destinationPath('app/images/videos'));
+      mkdirp(this.destinationPath('app/fonts'));
 
-      this.fs.write(this.destinationPath('app') + '/images/layout/.gitkeep', '');
-      this.fs.write(this.destinationPath('app') + '/images/style/.gitkeep', '');
-      this.fs.write(this.destinationPath('app') + '/images/temp/.gitkeep', '');
-      this.fs.write(this.destinationPath('app') + '/images/videos/.gitkeep', '');
-      this.fs.write(this.destinationPath('app') + '/fonts/.gitkeep', '');
+      this.fs.write(this.destinationPath('app/images/layout/.gitkeep'), '');
+      this.fs.write(this.destinationPath('app/images/style/.gitkeep'), '');
+      this.fs.write(this.destinationPath('app/images/temp/.gitkeep'), '');
+      this.fs.write(this.destinationPath('app/images/videos/.gitkeep'), '');
+      this.fs.write(this.destinationPath('app/fonts/.gitkeep'), '');
 
       if (this.includeSass) {
-        mkdirp(this.destinationPath('app') + '/styles/base');
-        mkdirp(this.destinationPath('app') + '/styles/generic');
-        mkdirp(this.destinationPath('app') + '/styles/gui');
+        mkdirp(this.destinationPath('app/styles/base'));
+        mkdirp(this.destinationPath('app/styles/generic'));
+        mkdirp(this.destinationPath('app/styles/gui'));
 
-        this.fs.write(this.destinationPath('app') + '/styles/gui/.gitkeep', '');
-        this.fs.write(this.destinationPath('app') + '/styles/generic/.gitkeep', '');
-        this.fs.write(this.destinationPath('app') + '/styles/base/.gitkeep', '');
+        this.fs.write(this.destinationPath('app/styles/gui/.gitkeep'), '');
+        this.fs.write(this.destinationPath('app/styles/generic/.gitkeep'), '');
+        this.fs.write(this.destinationPath('app/styles/base/.gitkeep'), '');
       }
 
       if (this.options['coffee']) {
@@ -331,9 +331,9 @@ module.exports = yeoman.Base.extend({
         this.fs.write(this.destinationPath('app/scripts/debug.coffee'), '');
         this.fs.write(this.destinationPath('app/scripts/ie.coffee'), '');
       } else {
-        this.fs.write(this.destinationPath('app') + '/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
-        this.fs.write(this.destinationPath('app') + '/scripts/debug.js', '');
-        this.fs.write(this.destinationPath('app') + '/scripts/ie.js', '');
+        this.fs.write(this.destinationPath('app/scripts/main.js'), 'console.log(\'\\\'Allo \\\'Allo!\');');
+        this.fs.write(this.destinationPath('app/scripts/debug.js'), '');
+        this.fs.write(this.destinationPath('app/scripts/ie.js'), '');
       }
 
       this.fs.copy(
