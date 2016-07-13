@@ -70,6 +70,7 @@ module.exports = yeoman.Base.extend({
         value: 'includeAssemble',
         checked: true
       }, {
+        // TODO: rely on Assemble choice since it's Assemble plugin
         name: 'Assemble i18n',
         value: 'includeAssembleI18N',
         checked: true
