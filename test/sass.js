@@ -8,6 +8,7 @@ describe('Sass feature', function() {
     before(function(done) {
       helpers.run(path.join(__dirname, '../app'))
         .withArguments(['webapp'])
+        .withOptions({'skip-install': true})
         .withPrompts({features: [
           'includeSass'
         ]})
@@ -33,6 +34,7 @@ describe('Sass feature', function() {
       helpers.run(path.join(__dirname, '../app'))
         .withArguments(['webapp'])
         .withPrompts({features: []})
+        .withOptions({'skip-install': true})
         .on('end', done);
     });
 

@@ -426,15 +426,19 @@ module.exports = yeoman.Base.extend({
     }
   },
 
-  install: function() {
-    this.installDependencies({
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
+  bundle: function() {
     if (this.includeSass) {
       var gempath = require.resolve('grunt-scss-lint/Gemfile');
       this.spawnCommand('bundle', ['install', '--gemfile=' + gempath]);
     }
+  },
+
+  install: function() {
+    this.installDependencies({
+      skipMessage: this.options['skip-install-message'],
+      skipInstall: this.options['skip-install'],
+      callback: this.bundle()
+    });
   },
 
   end: function() {

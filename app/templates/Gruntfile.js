@@ -253,6 +253,17 @@ module.exports = function (grunt) {
           ext: '.css'
         }]
       }
+    },
+
+    scsslint: {
+      allFiles: [
+        '<%%= config.app %>/styles/*.{scss,sass}'
+      ],
+      options: {
+        bundleExec: true,
+        config: '.scss-lint.yml',
+        colorizeOutput: true
+      }
     },<% } %>
 
     // Add vendor prefixed styles
