@@ -231,10 +231,9 @@ module.exports = function(grunt) {
     sass: {
       options: {<% if (includeLibSass) { %>
         sourceMap: true,
-        includePaths: ['bower_components']
-        <% } else { %>
-        loadPath: 'bower_components'
-      <% } %>},
+        includePaths: ['bower_components']<% } else { %>
+        loadPath: 'bower_components'<% } %>
+      },
       dist: {
         files: [{
           expand: true,
@@ -555,7 +554,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function(target) {
+  grunt.registerTask('serve', 'Start server. Use --allow-remote for remote access', function(target) {
     if (grunt.option('allow-remote')) {
       grunt.config.set('connect.options.hostname', '0.0.0.0');
     }
