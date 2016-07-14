@@ -9,7 +9,14 @@ describe('Assemble feature', function() {
     'src/templates/layouts/default.hbs',
     'src/templates/pages/index.hbs',
     'src/templates/partials/header.hbs',
-    'src/templates/partials/footer.hbs'
+    'src/templates/partials/footer.hbs',
+    'src/templates/pages/home/index.hbs'
+  ];
+
+  var configs = [
+    'src/data/i18n/i18n.yml',
+    'src/data/i18n/en_GB.yml',
+    'src/data/i18n/de_DE.yml',
   ];
 
   describe('on', function() {
@@ -23,16 +30,17 @@ describe('Assemble feature', function() {
     });
 
     it('should add dependencies', function() {
-      assert.fileContent('package.json', '"assemble"');
-      assert.fileContent('package.json', '"assemble-middleware-permalinks"');
+      assert.fileContent('package.json', '"grunt-assemble"');
+      assert.fileContent('package.json', '"grunt-assemble-permalinks"');
+      assert.fileContent('package.json', '"grunt-assemble-i18n');
     });
 
     it('should create Handlebars templates', function() {
       assert.file(templates);
     });
 
-    it('should create configuration YAML', function() {
-      assert.file('src/data/config.yml');
+    it('should create configuration YAMLs', function() {
+      assert.file(configs);
     });
   });
 
@@ -45,16 +53,17 @@ describe('Assemble feature', function() {
     });
 
     it('shouldn\'t add dependencies', function() {
-      assert.noFileContent('package.json', '"assemble"');
-      assert.noFileContent('package.json', '"assemble-middleware-permalinks"');
+      assert.noFileContent('package.json', '"grunt-assemble"');
+      assert.noFileContent('package.json', '"grunt-assemble-permalinks"');
+      assert.noFileContent('package.json', '"grunt-assemble-i18n');
     });
 
     it('shouldn\'t create Handlebars templates', function() {
       assert.noFile(templates);
     });
 
-    it('shouldn\'t create configuration YAML', function() {
-      assert.noFile('src/data/config.yml');
+    it('shouldn\'t create configuration YAMLs', function() {
+      assert.noFile(configs);
     });
   });
 });

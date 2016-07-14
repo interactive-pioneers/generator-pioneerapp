@@ -69,28 +69,7 @@ describe('Grunt tasks', function() {
     });
 
     it('should include permalinks configuration', function() {
-      assert.fileContent('Gruntfile.js', 'assemble-middleware-permalinks');
-    });
-
-    it('shouldn\'t include i18n configuration', function() {
-      assert.noFileContent('Gruntfile.js', 'grunt-assemble-i18n');
-    });
-  });
-
-  context('with Assemble i18n feature', function() {
-    before(function(done) {
-      helpers.run(path.join(__dirname, '../app'))
-        .withArguments(['webapp'])
-        .withPrompts({features: ['includeAssembleI18N']})
-        .on('end', done);
-    });
-
-    it('should include subtasks', function() {
-      [
-        'assemble'
-      ].forEach(function(task) {
-        assert.fileContent('Gruntfile.js', task + ': ');
-      });
+      assert.fileContent('Gruntfile.js', 'grunt-assemble-permalinks');
     });
 
     it('should include i18n configuration', function() {
