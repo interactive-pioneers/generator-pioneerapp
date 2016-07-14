@@ -49,11 +49,11 @@ module.exports = function(grunt) {
         tasks: ['coffee:test', 'test:watch']
       },<% } else { %>
       js: {
-        files: ['<%%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['jshint'],
-        options: {
-          livereload: true
-        }
+        files: [
+          '<%%= config.app %>/scripts/{,*/}*.js',
+          '<%%= config.test %>/spec/*.js'
+        ],
+        tasks: ['jshint', 'jscs'],
       },
       jstest: {
         files: ['<%%= config.test %>/spec/{,*/}*.js'],
@@ -454,7 +454,8 @@ module.exports = function(grunt) {
       options: {
         flatten: true,
         layoutext: '.hbs',
-        assets: '<%%= config.app %>/',
+        // FIXME: assets path malfunction https://github.com/assemble/grunt-assemble/issues/44
+        //assets: '<%= config.app %>',
         layoutdir: '<%%= config.src %>/templates/layouts',
         partials: ['<%%= config.src %>/templates/partials/*.hbs'],
         data: ['<%%= config.src %>/data/{i18n/,}*.yml'],
@@ -540,6 +541,29 @@ module.exports = function(grunt) {
       }
     },
 
+    browserSync: {
+      dev: {
+        bsFiles: {
+          src: [
+            '.tmp/styles/*.css',
+            '<%= config.app %>/scripts/*.js'<% if includeAssemble { %>,
+            '<%= config.src %>/data/{i18n/,}*.yml',
+            '<%= config.src %>/templates/{partials,layouts}/*.hbs',
+            '<%= config.src %>/templates/pages/{*/,}*.hbs'<% } %>
+          ]
+        },
+        options: {
+          watchTask: true,
+          server: {
+            baseDir: [
+              '.tmp',
+              '<%= config.app %>'
+            ]
+          }
+        }
+      }
+    },
+
     pngcheck: {
       files: {
         src: ['<%%= config.app %>/images/{,**/}*.png']
@@ -548,20 +572,12 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('serve', 'Start server. Use --allow-remote for remote access', function(target) {
-    if (grunt.option('allow-remote')) {
-      grunt.config.set('connect.options.hostname', '0.0.0.0');
-    }
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
-    }
-
     grunt.task.run([
       'clean:server',
       'concurrent:server',
       'wiredep',
       'autoprefixer',
       'browserSync',
-      'connect:livereload',
       'watch'
     ]);
   });
@@ -576,12 +592,12 @@ module.exports = function(grunt) {
       grunt.task.run([
         'clean:server',
         'concurrent:test',
+        'copy:styles',
         'autoprefixer'
       ]);
     }
 
     grunt.task.run([
-      'connect:test',
       'mocha'
     ]);
   });
