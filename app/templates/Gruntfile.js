@@ -51,7 +51,7 @@ module.exports = function(grunt) {
       js: {
         files: [
           '<%%= config.app %>/scripts/{,*/}*.js',
-          '<%%= config.test %>/spec/*.js'
+          '<%%= config.test %>/spec/*.js
         ],
         tasks: ['jshint', 'jscs'],
       },
@@ -69,17 +69,6 @@ module.exports = function(grunt) {
       styles: {
         files: ['<%%= config.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
-      },
-      livereload: {
-        options: {
-          livereload: '<%%= connect.options.livereload %>'
-        },
-        files: [
-          '<%%= config.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',<% if (coffee) { %>
-          '{.tmp,<%%= config.app %>}/scripts/{,*/}*.js',<% } %>
-          '<%%= config.app %>/images/{,*/}*'
-        ]
       }<% if (includeAssemble) { %>,
       // newer task can not be used over structural reasons in case of i18n.
       templateRoot: {
@@ -98,48 +87,6 @@ module.exports = function(grunt) {
         ],
         tasks: ['assemble:pages']
       }<% } %>
-    },
-
-    // The actual grunt server settings
-    connect: {
-      options: {
-        port: 9000,
-        open: true,
-        livereload: 35729,
-        // Change this to '0.0.0.0' to access the server from outside
-        hostname: '0.0.0.0'
-      },
-      livereload: {
-        options: {
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(config.app)
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          open: false,
-          port: 9001,
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(config.app)
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          base: '<%%= config.dist %>',
-          livereload: false
-        }
-      }
     },
 
     // Empties folders to start fresh
@@ -161,7 +108,8 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+        force: true
       },
       all: [
         'Gruntfile.js',
@@ -180,7 +128,7 @@ module.exports = function(grunt) {
       ],
       options: {
         config: '.jscsrc',
-        verbose: true
+        force: true
       }
     },
 
@@ -448,7 +396,7 @@ module.exports = function(grunt) {
         },
         uglify: true
       }
-    },<% } %>
+    },<% } if (includeAssemble) { %>
 
     assemble: {
       options: {
@@ -495,7 +443,7 @@ module.exports = function(grunt) {
         src: '<%%= config.src %>/pages/{,*/}*.hbs',
         dest: '<%%= config.app %>/'
       }
-    },
+    },<% } %>
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
@@ -528,17 +476,6 @@ module.exports = function(grunt) {
         //'mocha',
         'pngcheck'
       ]
-    },
-
-    browserSync: {
-      dev: {
-        bsFiles: {
-          src: '.tmp/styles/main.css',
-        },
-        options: {
-          watchTask: true
-        }
-      }
     },
 
     browserSync: {
