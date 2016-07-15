@@ -37,7 +37,7 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
 - Clone the repository:
 
-    $ git clone https://github.com/interactive-pioneers/generator-pioneerapp.git
+        $ git clone https://github.com/interactive-pioneers/generator-pioneerapp.git
 
 - Symlink cloned repository to NPM libs, e.g.:
 
@@ -45,7 +45,7 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
 - Run:
 
-    $ yo pioneerapp <name of app>
+        $ yo pioneerapp <name of app>
 
 - Run `grunt` for building and `grunt serve`.
 
