@@ -2,7 +2,7 @@
 
 [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app optimised for performant i18n functionality.
 
-![](http://i.imgur.com/7fdTDk4.png)
+![](https://github.com/interactive-pioneers/generator-pioneerapp/blob/master/screenshot.png)
 
 ## Features
 
