@@ -20,8 +20,6 @@
 * Bootstrap for Sass (Optional)
 * Modernizr (Optional)
 
-For more information on what `generator-pioneerapp` can do for you, take a look at the [Grunt tasks](https://github.com/interactive-pioneers/generator-pioneerapp/blob/master/app/templates/_package.json) used in our `package.json`.
-
 ## Getting Started
 
 - Install generator with peer dependencies:
