@@ -493,10 +493,8 @@ module.exports = function(grunt) {
         bsFiles: {
           src: [
             '.tmp/styles/*.css',
-            '<%%= config.app %>/scripts/*.js'<% if (includeAssemble) { %>,
-            '<%%= config.src %>/data/{i18n/,}*.yml',
-            '<%%= config.src %>/templates/{partials,layouts}/*.hbs',
-            '<%%= config.src %>/templates/pages/{*/,}*.hbs'<% } %>
+            '<%%= config.app %>/scripts/*.js',
+            '<%%= config.app %>/{*_*/,}*.html'
           ]
         },
         options: {
