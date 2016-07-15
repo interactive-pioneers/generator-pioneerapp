@@ -46,6 +46,8 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
         $ ln -s <cloned repisitory folder> ~/.nvm/versions/node/v6.2.0/lib/node_modules/generator-pioneerapp
 
+  When using [NVM](https://github.com/creationix/nvm), you can conclude exact location of NPM libs from `echo $NVM_PATH`.
+
 - Run:
 
         $ yo pioneerapp <name of app>
