@@ -33,17 +33,21 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 - Run `grunt test` for unit tests
 - Run `grunt qa` for comprehensive QA tests featuring JSHint, JSCS, Mocha unit tests
 
-#### Installing the very latest
+### Installing the very latest
 
-- Clone the repository: `git clone https://github.com/interactive-pioneers/generator-pioneerapp.git`
-- Move into the cloned directory: `cd generator-pioneerapp`
-- Install: `npm i -g .`
-- Move into your project folder: `cd <your project folder>`
+- Clone the repository:
+
+    $ git clone https://github.com/interactive-pioneers/generator-pioneerapp.git
+
+- Symlink cloned repository to NPM libs, e.g.:
+
+    $ ln -s <cloned repisitory folder> ~/.nvm/versions/node/v6.2.0/lib/node_modules/generator-pioneerapp
+
 - Run:
 
     $ yo pioneerapp <name of app>
 
-- Run `grunt` for building and `grunt serve` for preview[\*](#grunt-serve-note).
+- Run `grunt` for building and `grunt serve`.
 
 ## Options
 
