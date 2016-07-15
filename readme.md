@@ -29,7 +29,9 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
     $ yo pioneerapp <name of app>
 
-- Run `grunt` for building and `grunt serve` for preview[\*](#grunt-serve-note).
+- Run `grunt` for building and `grunt serve` for preview.
+- Run `grunt test` for unit tests
+- Run `grunt qa` for comprehensive QA tests featuring JSHint, JSCS, Mocha unit tests
 
 #### Installing the very latest
 
