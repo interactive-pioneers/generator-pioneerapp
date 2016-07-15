@@ -14,7 +14,7 @@
 * Awesome Image Optimization (via OptiPNG, pngquant, jpegtran and gifsicle)
 * Mocha Unit Testing with PhantomJS
 * Automagically compile CoffeeScript & Sass (libsass) (Optional)
-* Assemble template system (Optional) with
+* [Assemble](http://assemble.io) template system (Optional) with
   * i18n
   * permalinks
 * Bootstrap for Sass (Optional)
