@@ -24,10 +24,13 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
 ## Getting Started
 
-- Install generator with peer dependencies: `npm i -g generator-pioneerapp yo generator-mocha`
+- Install generator with peer dependencies:
+
+        $ npm i -g generator-pioneerapp yo generator-mocha
+
 - Run:
 
-    $ yo pioneerapp <name of app>
+        $ yo pioneerapp <name of app>
 
 - Run `grunt` for building and `grunt serve` for preview.
 - Run `grunt test` for unit tests
@@ -41,7 +44,7 @@ For more information on what `generator-pioneerapp` can do for you, take a look 
 
 - Symlink cloned repository to NPM libs, e.g.:
 
-    $ ln -s <cloned repisitory folder> ~/.nvm/versions/node/v6.2.0/lib/node_modules/generator-pioneerapp
+        $ ln -s <cloned repisitory folder> ~/.nvm/versions/node/v6.2.0/lib/node_modules/generator-pioneerapp
 
 - Run:
 
