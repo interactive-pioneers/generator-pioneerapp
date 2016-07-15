@@ -6,19 +6,19 @@
 
 ## Features
 
-* CSS Autoprefixing
 * BrowserSync providing
   * preview server
   * live CSS injection
-* Automagically compile CoffeeScript & Sass (libsass)
+* CSS Autoprefixing
 * Automagically lint your scripts
 * Awesome Image Optimization (via OptiPNG, pngquant, jpegtran and gifsicle)
 * Mocha Unit Testing with PhantomJS
-* Optional Assemble template system with
+* Automagically compile CoffeeScript & Sass (libsass) (Optional)
+* Assemble template system (Optional) with
   * i18n
   * permalinks
-* Optional Bootstrap for Sass
-* Optional Modernizr
+* Bootstrap for Sass (Optional)
+* Modernizr (Optional)
 
 For more information on what `generator-pioneerapp` can do for you, take a look at the [Grunt tasks](https://github.com/interactive-pioneers/generator-pioneerapp/blob/master/app/templates/_package.json) used in our `package.json`.
 
