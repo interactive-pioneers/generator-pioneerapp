@@ -69,17 +69,6 @@ module.exports = function(grunt) {
       styles: {
         files: ['<%%= config.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
-      },
-      livereload: {
-        options: {
-          livereload: '<%%= connect.options.livereload %>'
-        },
-        files: [
-          '<%%= config.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',<% if (coffee) { %>
-          '{.tmp,<%%= config.app %>}/scripts/{,*/}*.js',<% } %>
-          '<%%= config.app %>/images/{,*/}*'
-        ]
       }<% if (includeAssemble) { %>,
       // newer task can not be used over structural reasons in case of i18n.
       templateRoot: {
@@ -98,48 +87,6 @@ module.exports = function(grunt) {
         ],
         tasks: ['assemble:pages']
       }<% } %>
-    },
-
-    // The actual grunt server settings
-    connect: {
-      options: {
-        port: 9000,
-        open: true,
-        livereload: 35729,
-        // Change this to '0.0.0.0' to access the server from outside
-        hostname: '0.0.0.0'
-      },
-      livereload: {
-        options: {
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(config.app)
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          open: false,
-          port: 9001,
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(config.app)
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          base: '<%%= config.dist %>',
-          livereload: false
-        }
-      }
     },
 
     // Empties folders to start fresh
@@ -226,7 +173,7 @@ module.exports = function(grunt) {
           ext: '.js'
         }]
       }
-    },<% } %><% if (includeSass) { %>
+    },<% } if (includeSass) { %>
 
     sass: {
       options: {<% if (includeLibSass) { %>
@@ -455,7 +402,7 @@ module.exports = function(grunt) {
         flatten: true,
         layoutext: '.hbs',
         // FIXME: assets path malfunction https://github.com/assemble/grunt-assemble/issues/44
-        //assets: '<%= config.app %>',
+        // assets: '<%%= config.app %>',
         layoutdir: '<%%= config.src %>/templates/layouts',
         partials: ['<%%= config.src %>/templates/partials/*.hbs'],
         data: ['<%%= config.src %>/data/{i18n/,}*.yml'],
@@ -546,10 +493,10 @@ module.exports = function(grunt) {
         bsFiles: {
           src: [
             '.tmp/styles/*.css',
-            '<%= config.app %>/scripts/*.js'<% if includeAssemble { %>,
-            '<%= config.src %>/data/{i18n/,}*.yml',
-            '<%= config.src %>/templates/{partials,layouts}/*.hbs',
-            '<%= config.src %>/templates/pages/{*/,}*.hbs'<% } %>
+            '<%%= config.app %>/scripts/*.js'<% if (includeAssemble) { %>,
+            '<%%= config.src %>/data/{i18n/,}*.yml',
+            '<%%= config.src %>/templates/{partials,layouts}/*.hbs',
+            '<%%= config.src %>/templates/pages/{*/,}*.hbs'<% } %>
           ]
         },
         options: {
@@ -557,7 +504,7 @@ module.exports = function(grunt) {
           server: {
             baseDir: [
               '.tmp',
-              '<%= config.app %>'
+              '<%%= config.app %>'
             ]
           }
         }

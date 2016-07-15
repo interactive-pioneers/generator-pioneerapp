@@ -29,7 +29,6 @@ describe('Grunt tasks', function() {
     it('should include subtasks', function() {
       [
         'watch',
-        'connect',
         'clean',
         'jshint',
         'jscs',
