@@ -74,6 +74,10 @@ describe('Grunt tasks', function() {
     it('should include i18n configuration', function() {
       assert.fileContent('Gruntfile.js', 'grunt-assemble-i18n');
     });
+
+    it('should include Handlebars helpers', function() {
+      assert.fileContent('Gruntfile.js', 'handlebars-helper-i18n');
+    });
   });
 
   context('with Modernizr feature', function() {

@@ -34,7 +34,8 @@
     "jit-grunt": "^0.10.0",<% if (includeAssemble) { %>
     "grunt-assemble": "^0.4.0",
     "grunt-assemble-permalinks": "^0.1.0",
-    "grunt-assemble-i18n": "^0.1.1",<% } %>
+    "grunt-assemble-i18n": "^0.1.1",
+    "handlebars-helper-i18n": "interactive-pioneers/handlebars-helper-i18n#128910a",<% } %>
     "mocha-bamboo-reporter": "^1.1.0",
     "grunt-jscs": "^3.0.1"
   },
