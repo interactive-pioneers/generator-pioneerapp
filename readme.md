@@ -17,6 +17,7 @@
 * [Assemble](http://assemble.io) template system (Optional) with
   * i18n
   * permalinks
+  * rawinclude (e.g. for inline SVG sprite includes)
 * Bootstrap for Sass (Optional)
 * Modernizr (Optional)
 

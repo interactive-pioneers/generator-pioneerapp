@@ -406,7 +406,7 @@ module.exports = function(grunt) {
         layoutdir: '<%%= config.src %>/templates/layouts',
         partials: ['<%%= config.src %>/templates/partials/*.hbs'],
         data: ['<%%= config.src %>/data/{i18n/,}*.yml'],
-        helpers: ['handlebars-helper-i18n']
+        helpers: ['handlebars-helper-i18n', 'handlebars-helper-rawinclude']
       },
       <% // TODO implement default language into scaffold options %>
       index: {

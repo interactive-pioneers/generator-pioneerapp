@@ -34,6 +34,7 @@ describe('Assemble feature', function() {
       assert.fileContent('package.json', '"grunt-assemble-permalinks"');
       assert.fileContent('package.json', '"grunt-assemble-i18n');
       assert.fileContent('package.json', '"handlebars-helper-i18n');
+      assert.fileContent('package.json', '"handlebars-helper-rawinclude');
     });
 
     it('should create Handlebars templates', function() {
@@ -58,6 +59,7 @@ describe('Assemble feature', function() {
       assert.noFileContent('package.json', '"grunt-assemble-permalinks"');
       assert.noFileContent('package.json', '"grunt-assemble-i18n');
       assert.noFileContent('package.json', '"handlebars-helper-i18n');
+      assert.noFileContent('package.json', '"handlebars-helper-rawinclude');
     });
 
     it('shouldn\'t create Handlebars templates', function() {

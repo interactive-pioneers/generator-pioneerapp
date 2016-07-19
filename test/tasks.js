@@ -77,6 +77,7 @@ describe('Grunt tasks', function() {
 
     it('should include Handlebars helpers', function() {
       assert.fileContent('Gruntfile.js', 'handlebars-helper-i18n');
+      assert.fileContent('Gruntfile.js', 'handlebars-helper-rawinclude');
     });
   });
 
