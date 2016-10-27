@@ -10,6 +10,7 @@ describe('Assemble feature', function() {
     'src/templates/pages/index.hbs',
     'src/templates/partials/header.hbs',
     'src/templates/partials/footer.hbs',
+    'src/templates/partials/facebook.hbs',
     'src/templates/pages/home/index.hbs'
   ];
 
