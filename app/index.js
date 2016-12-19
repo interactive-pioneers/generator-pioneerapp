@@ -377,6 +377,12 @@ module.exports = yeoman.Base.extend({
           this.templateData
         );
 
+        this.fs.copyTpl(
+          this.templatePath('.src/templates/partials/facebook.hbs'),
+          this.destinationPath('src/templates/partials/facebook.hbs'),
+          this.templateData
+        );
+
         mkdirp(this.destinationPath('src/data/i18n'));
 
         this.fs.copyTpl(

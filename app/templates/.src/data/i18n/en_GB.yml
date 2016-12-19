@@ -1,10 +1,13 @@
-lang: "en_GB"
+lang: "en"
+locale: "en_GB"
 name: "United Kingdom"
 title: "Site title"
 meta:
   keywords: "META keywords"
   sharing: "Sharing text"
-  canonical: "en_GB"
+  canonical: "http://localhost:3000/?en"
   description: "META description"
-  metalang: "en"
+  image: "/app-touch-icon.png"
+  facebook:
+    type: "business.business"
 content: "i18n data by Assemble"

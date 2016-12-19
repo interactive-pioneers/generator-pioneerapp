@@ -1,10 +1,13 @@
-lang: "de_DE"
+lang: "de"
+locale: "de_DE"
 name: "Deutschland"
 title: "Site Titel"
 meta:
   keywords: "META Schlüsselwörter"
   sharing: "Text zu teilen"
-  cannonical: "de_DE"
+  canonical: "http://localhost:3000/?de"
   description: "META Beschreibung"
-  metalang: "de"
+  image: "/app-touch-icon.png"
+  facebook:
+    type: "business.business"
 content: "i18n Daten von Assemble"
