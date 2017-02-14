@@ -480,17 +480,6 @@ module.exports = function(grunt) {
     browserSync: {
       dev: {
         bsFiles: {
-          src: '.tmp/styles/main.css',
-        },
-        options: {
-          watchTask: true
-        }
-      }
-    },
-
-    browserSync: {
-      dev: {
-        bsFiles: {
           src: [
             '.tmp/styles/*.css',
             '<%%= config.app %>/scripts/*.js',
@@ -516,16 +505,20 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('serve', 'Start server. Use --allow-remote for remote access', function(target) {
-    grunt.task.run([
-      'clean:server',
-      'concurrent:server',
-      'wiredep',
-      'autoprefixer',
-      'browserSync',
-      'watch'
-    ]);
-  });
+  grunt.registerTask(
+    'serve',
+    'Start server. Use --allow-remote for remote access',
+    function() {
+      grunt.task.run([
+        'clean:server',
+        'concurrent:server',
+        'wiredep',
+        'autoprefixer',
+        'browserSync',
+        'watch'
+      ]);
+    }
+  );
 
   grunt.registerTask('server', function(target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
