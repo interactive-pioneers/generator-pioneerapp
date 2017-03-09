@@ -80,4 +80,4 @@
 
 ## Licence
 
-Copyright © 2016 Interactive Pioneers GmbH, [contributors](https://github.com/interactive-pioneers/generator-pioneerapp/graphs/contributors). Licenced under [GPL-3](LICENSE).
+Copyright © 2016, 2017 Interactive Pioneers GmbH, [contributors](https://github.com/interactive-pioneers/generator-pioneerapp/graphs/contributors). Licenced under [GPL-3](LICENSE).
