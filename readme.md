@@ -21,6 +21,12 @@
 * Bootstrap for Sass (Optional)
 * Modernizr (Optional)
 
+## Requirements
+
+- Node.js `^6.2.0`
+- [Yeoman](http://yeoman.io)
+- [generator-mocha](https://github.com/yeoman/generator-mocha)
+
 ## Getting Started
 
 - Install generator with peer dependencies:
