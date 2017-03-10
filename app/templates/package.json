@@ -38,9 +38,16 @@
     "handlebars-helper-rawinclude": "^1.0.0",
     "handlebars-helper-i18n": "interactive-pioneers/handlebars-helper-i18n#128910a",<% } %>
     "mocha-bamboo-reporter": "^1.1.0",
-    "grunt-jscs": "^3.0.1"
+    "grunt-jscs": "^3.0.1",
+    "bower": "^1.8.0",
+    "grunt-cli": "^1.2.0"
   },
   "engines": {
     "node": "^6.2.0"
+  },
+  "scripts": {
+    "bower": "bower",
+    "grunt": "grunt",
+    "install": "bower install"
   }
 }
