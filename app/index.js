@@ -29,16 +29,6 @@ module.exports = yeoman.Base.extend({
       type: Boolean
     });
 
-    var testLocal = require.resolve('generator-mocha/generators/app/index.js');
-
-    this.composeWith('mocha:app', {
-      options: {
-        'skip-install': this.options['skip-install']
-      }
-    }, {
-      local: testLocal
-    });
-
   },
 
   initializing: function() {
@@ -412,6 +402,22 @@ module.exports = yeoman.Base.extend({
         );
       }
     }
+  },
+
+  test: function() {
+    mkdirp(this.destinationPath('test/spec'));
+
+    this.fs.copyTpl(
+      this.templatePath('.test/index.html'),
+      this.destinationPath('test/index.html'),
+      this.templateData
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('.test/spec/test.js'),
+      this.destinationPath('test/spec/test.js'),
+      this.templateData
+    );
   },
 
   install: function() {
