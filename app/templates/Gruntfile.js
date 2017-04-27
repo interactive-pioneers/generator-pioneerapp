@@ -126,8 +126,7 @@ module.exports = function(grunt) {
         '<%%= config.test %>/spec/{,*/}*.js'
       ],
       options: {
-        config: '.jscsrc',
-        verbose: true
+        config: '.jscsrc'
       }
     },
 
