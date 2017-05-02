@@ -38,7 +38,8 @@
     "handlebars-helper-rawinclude": "^1.0.0",
     "handlebars-helper-i18n": "interactive-pioneers/handlebars-helper-i18n#128910a",<% } %>
     "mocha-bamboo-reporter": "^1.1.0",
-    "grunt-jscs": "^3.0.1"
+    "grunt-jscs": "^3.0.1",
+    "chai": "~3.5.0"
   },
   "engines": {
     "node": "^6.2.0"
