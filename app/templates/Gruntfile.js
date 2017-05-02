@@ -376,15 +376,13 @@ module.exports = function(grunt) {
       options: {
         flatten: true,
         layoutext: '.hbs',
-        // FIXME: assets path malfunction https://github.com/assemble/grunt-assemble/issues/44
-        assets: '<%%= config.app %>/<%%= config.app %>',
+        assets: '<%%= config.app %>/<%%= config.app %>',<% // FIXME: assets path malfunction https://github.com/assemble/grunt-assemble/issues/44 %>
         layoutdir: '<%%= config.src %>/templates/layouts',
         partials: ['<%%= config.src %>/templates/partials/*.hbs'],
         data: ['<%%= config.src %>/data/{i18n/,}*.yml'],
         helpers: ['handlebars-helper-i18n', 'handlebars-helper-rawinclude']
       },
-      <% // TODO implement default language into scaffold options %>
-      index: {
+      index: {<% // TODO implement default language into scaffold options %>
         options: {
           plugins: ['grunt-assemble-i18n', 'grunt-assemble-permalinks'],
           i18n: {
@@ -446,8 +444,7 @@ module.exports = function(grunt) {
       qa: [
         'jshint',
         'jscs',
-        <% // TODO: finalise mocha generation so that it would safely fall through %>
-        //'mocha',
+        'mocha',
         'pngcheck'
       ]
     },
