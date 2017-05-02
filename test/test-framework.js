@@ -8,7 +8,6 @@ describe('test framework', function() {
     before(function(done) {
       helpers.run(path.join(__dirname, '../app'))
         .withArguments(['webapp'])
-        .withOptions({'test-framework': 'mocha'})
         .withPrompts({features: []})
         .on('end', done);
     });

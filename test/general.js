@@ -6,11 +6,8 @@ var assert = require('yeoman-assert');
 describe('general', function() {
   before(function(done) {
     helpers.run(path.join(__dirname, '../app'))
-      .withPrompts({features: []})
-      .withGenerators([
-        [helpers.createDummyGenerator(), 'mocha:app']
-      ])
       .withArguments(['webapp'])
+      .withPrompts({features: []})
       .on('end', done);
   });
 
