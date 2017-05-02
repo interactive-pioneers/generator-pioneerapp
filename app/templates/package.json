@@ -32,8 +32,8 @@
     "grunt-pngcheck":  "^0.1.0",
     "grunt-browser-sync": "^2.2.0",
     "jit-grunt": "^0.10.0",<% if (includeAssemble) { %>
-    "grunt-assemble": "assemble/grunt-assemble#3148d66",
-    "grunt-assemble-permalinks": "^0.1.0",
+    "grunt-assemble": "^0.6.3",
+    "grunt-assemble-permalinks": "^0.1.1",
     "grunt-assemble-i18n": "^0.1.1",
     "handlebars-helper-rawinclude": "^1.0.0",
     "handlebars-helper-i18n": "interactive-pioneers/handlebars-helper-i18n#128910a",<% } %>

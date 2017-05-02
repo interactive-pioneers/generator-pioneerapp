@@ -247,10 +247,11 @@ module.exports = function(grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
+      html: '<%%= config.app %>/index.html',
       options: {
+        root: '<%%= config.app %>',
         dest: '<%%= config.dist %>'
-      },
-      html: '<%%= config.app %>/index.html'
+      }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -259,10 +260,11 @@ module.exports = function(grunt) {
         assetsDirs: [
           '<%%= config.dist %>',
           '<%%= config.dist %>/images',
-          '<%%= config.dist %>/styles'
+          '<%%= config.dist %>/styles',
+          '<%%= config.dist %>/scripts'
         ]
       },
-      html: ['<%%= config.dist %>/{,*/}*.html'],
+      html: ['<%%= config.dist %>/{,**/}*.html'],
       css: ['<%%= config.dist %>/styles/{,*/}*.css']
     },
 
@@ -311,32 +313,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // By default, your `index.html`'s <!-- Usemin block --> will take care
-    // of minification. These next options are pre-configured if you do not
-    // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%%= config.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%%= config.dist %>/scripts/scripts.js': [
-    //         '<%%= config.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
-
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -348,7 +324,7 @@ module.exports = function(grunt) {
           src: [
             '*.{ico,png,txt}',
             'images/{,*/}*.{webp,webm,ogv,mp4}',
-            '{,*/}*.html',
+            '{,**/}*.html',
             'fonts/*.{eot,svg,ttf,woff}'
           ]
         }, {
@@ -401,7 +377,7 @@ module.exports = function(grunt) {
         flatten: true,
         layoutext: '.hbs',
         // FIXME: assets path malfunction https://github.com/assemble/grunt-assemble/issues/44
-        // assets: '<%%= config.app %>',
+        assets: '<%%= config.app %>/<%%= config.app %>',
         layoutdir: '<%%= config.src %>/templates/layouts',
         partials: ['<%%= config.src %>/templates/partials/*.hbs'],
         data: ['<%%= config.src %>/data/{i18n/,}*.yml'],
@@ -422,7 +398,7 @@ module.exports = function(grunt) {
           }
         },
         src: '!*.*',
-        dest: '<%%= config.app %>/'
+        dest: './<%%= config.app %>/'
       },
       pages: {
         options: {
@@ -439,7 +415,7 @@ module.exports = function(grunt) {
           }
         },
         src: '<%%= config.src %>/pages/{,*/}*.hbs',
-        dest: '<%%= config.app %>/'
+        dest: './<%%= config.app %>/'
       }
     },
 
@@ -504,20 +480,16 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask(
-    'serve',
-    'Start server. Use --allow-remote for remote access',
-    function() {
-      grunt.task.run([
-        'clean:server',
-        'concurrent:server',
-        'wiredep',
-        'autoprefixer',
-        'browserSync',
-        'watch'
-      ]);
-    }
-  );
+  grunt.registerTask('serve', 'Start server. Use --allow-remote for remote access', function() {
+    grunt.task.run([
+      'clean:server',
+      'concurrent:server',
+      'wiredep',
+      'autoprefixer',
+      'browserSync',
+      'watch'
+    ]);
+  });
 
   grunt.registerTask('server', function(target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
@@ -551,11 +523,11 @@ module.exports = function(grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'concat',
-    'cssmin',
-    'uglify',
     'copy:dist',<% if (includeModernizr) { %>
     'modernizr',<% } %>
+    'concat:generated',
+    'cssmin:generated',
+    'uglify:generated',
     'rev',
     'usemin',
     'htmlmin'
