@@ -39,7 +39,6 @@
   "requireSpaceBeforeBinaryOperators": [
     "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
     "&=", "|=", "^=", "+=",
-
     "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
     "|", "^", "&&", "||", "===", "==", ">=",
     "<=", "<", ">", "!=", "!=="
@@ -50,10 +49,10 @@
   "requireSpacesInForStatement": true,
   "requireLineFeedAtFileEnd": true,
   "requireSpacesInFunctionExpression": {
-      "beforeOpeningCurlyBrace": true
+    "beforeOpeningCurlyBrace": true
   },
   "disallowSpacesInAnonymousFunctionExpression": {
-      "beforeOpeningRoundBrace": true
+    "beforeOpeningRoundBrace": true
   },
   "disallowSpacesInsideObjectBrackets": "all",
   "disallowSpacesInsideArrayBrackets": "all",
