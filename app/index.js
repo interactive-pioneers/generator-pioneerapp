@@ -305,11 +305,11 @@ module.exports = yeoman.Base.extend({
       }
 
       if (this.options['coffee']) {
-        this.fs.write(this.destinationPath('app/scripts/main.coffee'), 'console.log "\'Allo from CoffeeScript!"');
+        this.fs.write(this.destinationPath('app/scripts/main.coffee'), 'console.log "\'Allo from CoffeeScript!"' + "\n");
         this.fs.write(this.destinationPath('app/scripts/debug.coffee'), '');
         this.fs.write(this.destinationPath('app/scripts/ie.coffee'), '');
       } else {
-        this.fs.write(this.destinationPath('app/scripts/main.js'), 'console.log(\'\\\'Allo \\\'Allo!\');');
+        this.fs.write(this.destinationPath('app/scripts/main.js'), 'console.log(\'\\\'Allo \\\'Allo!\');' + "\n");
         this.fs.write(this.destinationPath('app/scripts/debug.js'), '');
         this.fs.write(this.destinationPath('app/scripts/ie.js'), '');
       }
