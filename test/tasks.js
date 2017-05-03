@@ -34,7 +34,6 @@ describe('Grunt tasks', function() {
         'jscs',
         'mocha',
         'autoprefixer',
-        'wiredep',
         'rev',
         'useminPrepare',
         'usemin',

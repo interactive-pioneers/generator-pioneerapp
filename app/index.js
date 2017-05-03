@@ -428,14 +428,8 @@ module.exports = yeoman.Base.extend({
   },
 
   end: function() {
-    var bowerJson = this.fs.readJSON(this.destinationPath('bower.json'));
     var howToInstall =
-      '\nAfter running ' +
-      chalk.yellow.bold('npm install & bower install') +
-      ', inject your' +
-      '\nfront end dependencies by running ' +
-      chalk.yellow.bold('grunt wiredep') +
-      '.';
+      '\nRun ' + chalk.yellow.bold('npm install') + ' to install project dependencies.';
 
     if (this.options['skip-install']) {
       this.log(howToInstall);

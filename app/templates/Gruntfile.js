@@ -36,11 +36,7 @@ module.exports = function(grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
-      },<% if (coffee) { %>
-      coffee: {
+      <% if (coffee) { %>coffee: {
         files: ['<%%= config.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['coffee:dist']
       },
@@ -212,20 +208,6 @@ module.exports = function(grunt) {
           dest: '.tmp/styles/'
         }]
       }
-    },
-
-    // Automatically inject Bower components into the HTML file
-    wiredep: {
-      app: {
-        ignorePath: /^<%%= config.app %>\/|\.\.\//,
-        src: ['<%%= config.app %>/{,*_*/**}*.html']<% if (includeBootstrap) { %>,<% if (includeSass) { %>
-        exclude: ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js']<% } else { %>
-        exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']<% } } %>
-      }<% if (includeSass) { %>,
-      sass: {
-        src: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
-      }<% } %>
     },
 
     // Renames files for browser caching purposes
@@ -484,7 +466,6 @@ module.exports = function(grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
-      'wiredep',
       'autoprefixer',
       'browserSync',
       'watch'
@@ -518,7 +499,6 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:dist',<% if (includeAssemble) { %>
     'concurrent:assemble',<% } %>
-    'wiredep',
     'concurrent:qa',
     'useminPrepare',
     'concurrent:dist',

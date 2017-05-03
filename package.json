@@ -48,7 +48,6 @@
     "yosay": "^1.2.0",
     "mkdirp": "^0.5.1",
     "underscore.string": "^3.3.4",
-    "wiredep": "^2.2.2",
     "yeoman-assert": "^2.1.1"
   },
   "devDependencies": {
