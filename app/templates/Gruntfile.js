@@ -130,21 +130,8 @@ module.exports = function(grunt) {
       }
     },
 
-    <%
-    /*
-     * TODO:
-     * - optimise
-     * - finalise mocha generation so that it would safely fall through
-     */
-    %>mocha: {
+    mocha: {
       all: {
-        options: {
-          run: true,
-          reporter: './node_modules/mocha-bamboo-reporter'
-        },
-        src: ['<%%= config.test %>/*.html']
-      },
-      reportless: {
         options: {
           run: true,
           log: true
