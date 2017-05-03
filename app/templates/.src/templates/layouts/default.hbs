@@ -18,8 +18,11 @@
     <!-- build:css(.tmp) {{assets}}/{{config.path.styles}}main.css -->
     <% if (includeBootstrap && !includeSass) { %><link rel="stylesheet" href="{{assets}}/{{config.path.bower}}/bootstrap/dist/css/bootstrap.css"><% } %>
     <link rel="stylesheet" href="{{assets}}/{{config.path.styles}}main.css" type="text/css" media="all">
+    <!-- endbuild --><% if (includeModernizr) { %>
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
-    <script src="{{assets}}/{{config.path.scripts}}vendor/modernizr.js"></script>
+    <% } %>
     <!--[if IE 8]>
     <script src="{{assets}}/{{config.path.script}}ie.js"></script>
     <![endif]-->

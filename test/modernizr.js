@@ -21,16 +21,38 @@ describe('Modernizr feature', function() {
   });
 
   describe('off', function() {
-    before(function(done) {
-      helpers.run(path.join(__dirname, '../app'))
-        .withArguments(['webapp'])
-        .withPrompts({features: []})
-        .on('end', done);
+
+    context('without Assemble', function() {
+      before(function(done) {
+        helpers.run(path.join(__dirname, '../app'))
+          .withArguments(['webapp'])
+          .withPrompts({features: []})
+          .on('end', done);
+      });
+
+      it('shouldn\'t add dependencies', function() {
+        assert.noFileContent('package.json', '"grunt-modernizr"');
+        assert.noFileContent('bower.json', '"modernizr"');
+      });
     });
 
-    it('shouldn\'t add dependencies', function() {
-      assert.noFileContent('package.json', '"grunt-modernizr"');
-      assert.noFileContent('bower.json', '"modernizr"');
+    context('with Assemble', function() {
+      before(function(done) {
+        helpers.run(path.join(__dirname, '../app'))
+          .withArguments(['webapp'])
+          .withPrompts({features: [
+            'includeAssemble'
+          ]})
+          .on('end', done);
+      });
+
+      it('shouldn\'t add script tag', function() {
+        assert.noFileContent('src/templates/layouts/default.hbs', 'modernizr.js');
+      });
+
+      it('shouldn\'t add no-js class', function() {
+        assert.noFileContent('src/templates/layouts/default.hbs', 'class="no-js"');
+      });
     });
   });
 });
